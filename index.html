@@ -38,6 +38,7 @@
 			</nav>
 		</div>
 	</header>
+	<!-- Home section -->
 	<section id="home" class="home-bg">
 		<div class="slider-container">
 			<div class="container">
@@ -81,6 +82,7 @@
 			</li>
 		</ul>
 	</section>
+	<!-- Service section -->
 	<section id="service">
 		<div class="light-bg section-offset-bottom">
 			<div class="container">
@@ -107,6 +109,7 @@
 			</div>
 		</div>
 	</section>
+	<!-- About section-->
 	<section id="about">
 		<div class="dark-bg about-container">
 			<div class="about-poster">
@@ -150,6 +153,7 @@
 			</div>
 		</div>
 	</section>
+	<!-- Work section -->
 	<section id="work">
 		<div class="light-bg-tone section-offset-bottom">
 			<div class="container">
@@ -243,6 +247,7 @@
 			</div>
 		</div>
 	</section>
+	<!-- Team section -->
 	<section id="team">
 		<div class="light-bg">
 			<div class="container clearfix section-offset-bottom">
@@ -373,6 +378,7 @@
 			</ul>
 		</div>
 	</section>
+	<!-- News section-->
 	<section id="news">
 		<div class="light-bg section-offset-bottom">
 			<div class="container">
@@ -441,11 +447,12 @@
 					</div>
 				</div>
 				<div class="news-btn-container">
-					<div class="btn"><i class="fa fa-plus fa-1x"></i>Load more</div>
+					<span class="btn news-load-btn"><i class="fa fa-plus fa-1x"></i>Load more</span>
 				</div>
 			</div>
 		</div>
 	</section>
+	<!-- Contact section -->
 	<section id="contact">
 		<div class="light-bg-tone">
 			<div class="container">
@@ -465,11 +472,53 @@
 						<span class="feedback-item-remove"><i class="fa fa-remove fa-1x"></i></span>
 					</div>
 				</div>
-				<div
+				<form class="row feedback-add-form">
+					<div class="col-xs-12 col-sm-8 col-md-offset-1 col-md-6">
+						<input type="text" name="title" placeholder="Title">
+						<textarea name="message" placeholder="Message"></textarea>
+					</div>
+					<div class="col-xs-12 col-sm-4 feedback-btn-container">
+						<h1>Leave us a message</h1>
+						<span class="btn feedback-add-btn"><i class="fa fa-plus fa-1x"></i>Add comment</span>
+					</div>
+				</form>
 			</div>
 		</div>
-
+		<div class="light-bg">
+			<div class="container-fluid">
+				<div class="row contact-container">
+					<div class="col-sm-6 map-container">
+						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5081.197414391828!2d30.455183632927934!3d50.44857494917805!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4ce82b9bc8a47%3A0x47514e5d91216bf3!2z0J3QotCj0KMgwqvQmtCfScK7!5e0!3m2!1suk!2sua!4v1474625293149" width="100%" height="550" frameborder="0" style="border:0" allowfullscreen></iframe>
+					</div>
+					<div class="container">
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="title-content">
+									<h1>Keep in Touch</h1>
+									<hr><hr>
+								</div>
+								<form class="contact-form">
+									<input type="text" name="Name" placeholder="Name">
+									<input type="text" name="Email" placeholder="Email">
+									<textarea name="message" placeholder="Message"></textarea>
+									<button type="submit" class="btn contact-form-btn">Send request</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</section>
-	<div style="height: 300px; background-color: #1b8dbb"></div>
+	<!-- Footer -->
+	<footer>
+		<div class="dark-bg-tone">
+			<div class="container footer-container">
+				<p class="footer-text">Copyright 2016 <a class="text-highlight" href="javascript:void(0)">theHam</a> | All Rights Reserved</p>
+				<a class="footer-btn" href="#/#home"><i class="fa fa-angle-up"></i></a>
+
+			</div>
+		</div>
+	</footer>
 </body>
 </html>
