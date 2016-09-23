@@ -150,6 +150,7 @@ header {
 
 	.nav-main > ul > li > a:hover {
 		border-bottom: 2px solid #18cfab;
+		transition:all 0.3s;
 	}
 
 	.nav-main > ul > li > a.nav-active {
@@ -240,6 +241,7 @@ header {
 	background-color: #18cfab;
 	color: #ffffff;
 	cursor: pointer;
+	transition:all 0.5s;
 }
 
 .slider-nav-left {
@@ -278,6 +280,7 @@ header {
 
 .btn:hover {
 	background-color: #00cbf6;
+	transition:all 0.5s;
 }
 
 
@@ -484,6 +487,7 @@ h1 {
 	background-color: #18cfab;
 	border: 1px solid #18cfab;
 	color: #ffffff;
+	transition:all 0.5s;
 }
 
 @media all and (min-width: 687px) {
@@ -577,6 +581,7 @@ h1 {
 .about-nav-item.active, .about-nav-item:hover {
 	border-top: 2px solid #18cfab;
 	color: #18cfab;
+	transition:all 0.5s;
 }
 
 .about-content {
@@ -602,22 +607,21 @@ h1 {
 }
 
 @media all and (min-width: 992px) {
+	.about-poster-container {
+		padding-left: 0;
+	}
+
 	.about-poster {
 		display: block;
-		position: absolute;
-		width: 50%;
-		height: 100%;
-		top: 50px;
-		padding-right: 30px;
+		width: 100%;
+		padding: 60px 0;
 	}
 
 	.about-poster > img {
-		display: inline-block;
 		width: 100%;
 	}
 
 	.about-container {
-		position: relative;
 		text-align: left;
 	}
 
@@ -651,6 +655,7 @@ h1 {
 
 .work-nav-item:hover {
 	color: #18cfab;
+	transition:all 0.5s;
 }
 
 .work-nav .active {
@@ -701,6 +706,7 @@ h1 {
 	opacity: 1;
 	background-color: rgba(255, 255, 255, 0.85);
 	box-shadow: inset 0 4px 0 0 #18cfab;
+	transition:all 0.5s;
 }
 
 .image-mask:before {
@@ -715,18 +721,20 @@ h1 {
 	vertical-align: middle;
 }
 
-.image-mask-link {
-	display: inline-block;
+.image-mask-content i{
 	width: 42px;
 	height: 42px;
-	background: url("../img/work-img-link.png") no-repeat center;
+	border: 1px solid #18cfab;
+	border-radius: 50%;
+	color: #18cfab;
+	background-color: #ffffff;
+	font-size: 16px;
+	line-height: 40px;
 }
-
-.image-mask-search {
-	display: inline-block;
-	width: 42px;
-	height: 42px;
-	background: url("../img/work-img-search.png") no-repeat center;
+.image-mask-content i:hover{
+	background-color: #18cfab;
+	color: #ffffff;
+	transition:all 0.5s;
 }
 
 .image-mask-title {
@@ -790,7 +798,7 @@ h1 {
 	height: 100%;
 	top: 0;
 	background-color: rgba(24, 207, 171, 0.2);
-	visibility: hidden;
+	opacity: 0;
 }
 
 .circle {
@@ -860,10 +868,12 @@ h1 {
 
 .team-member:hover .team-member-title, .team-member:hover .team-member-links i {
 	background-color: #18cfab;
+	transition:all 0.5s;
 }
 
 .team-member:hover .team-member-position {
 	color: #2e4a5b;
+	transition:all 0.5s;
 }
 
 .team-member:hover .team-member-photo > img {
@@ -871,7 +881,8 @@ h1 {
 }
 
 .team-member:hover .photo-mask {
-	visibility: visible;
+	opacity: 1;
+	transition:all 0.5s;
 }
 
 
@@ -998,10 +1009,12 @@ h1 {
 
 .news-container:hover .news-date {
 	background-color: #18cfab;
+	transition:all 0.5s;
 }
 
 .news-container:hover .news-title {
 	color: #18cfab;
+	transition:all 0.5s;
 }
 
 .news-btn-container {
@@ -1193,11 +1206,12 @@ h1 {
 	height: 45px;
 	background-color: #18cfab;
 	margin: 20px;
-	line-height: 45px;
+	line-height: 42px;
 }
 
 .footer-btn:hover {
 	background-color: #00cbf6;
+	transition:all 0.5s;
 }
 
 .footer-btn i {
