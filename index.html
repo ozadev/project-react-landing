@@ -25,44 +25,13 @@
 					<span class="logo-text logo-text-part2">Ham</span>
 				</a>
 			</div>
-			<nav class="nav-main">
-				<ul>
-					<li><a href="#/#home">Home</a></li>
-					<li><a href="#/#service">Service</a></li>
-					<li><a href="#/#about">About</a></li>
-					<li><a href="#/#work">Work</a></li>
-					<li><a href="#/#team">Team</a></li>
-					<li><a href="#/#news">News</a></li>
-					<li><a href="#/#contact">Contact</a></li>
-				</ul>
+			<nav id="nav-main" class="nav-main">
 			</nav>
 		</div>
 	</header>
 	<!-- Home section -->
-	<section id="home" class="home-bg">
-		<div class="slider-container">
-			<div class="container">
-				<div class="slider-nav-container">
-					<span class="slider-nav-left"><i class="fa fa-angle-left" style="font-size:40px"></i></span>
-					<span class="slider-nav-right"><i class="fa fa-angle-right" style="font-size:40px"></i></span>
-				</div>
-			</div>
-			<ul class="slider">
-				<li class="slider-item"><!--
-					--><div class="slider-content">
-						<div class="container slider-content-container">
-							<h1 class="slider-text1">The ham is <span class="text-highlight">a psd template</span></h1>
-							<h2 class="slider-text2">We are creative</h2>
-							<p class="slider-text3">Nam varius accumsan elementum aliquam</p>
-							<div class="slider-btn-container">
-								<a class="btn home-btn" href="#/#">Explore now</a>
-								<a class="btn home-btn" href="#/#">Purchase now</a>
-							</div>
-						</div>
-					</div><!--
-				--></li>
-			</ul>
-		</div>
+	<section id="home">
+		<div id="slider-home"></div>
 		<ul class="home-options clearfix">
 			<li class="home-options-item">
 				<div class="option-item"></div>
@@ -521,9 +490,10 @@
 		<div class="dark-bg-tone">
 			<div class="container footer-container">
 				<p class="footer-text">Copyright 2016 <a class="text-highlight" href="javascript:void(0)">theHam</a> | All Rights Reserved</p>
-				<a class="footer-btn" href="#/#home"><i class="fa fa-angle-up"></i></a>
+				<span id="btn-footer-top"></span>
 			</div>
 		</div>
 	</footer>
+	<script type="text/javascript" src="js/build/bundle.js"></script>
 </body>
 </html>

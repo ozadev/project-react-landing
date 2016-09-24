@@ -108,6 +108,7 @@ header {
 	text-transform: uppercase;
 	color: #b8b8b8;
 	text-decoration: none;
+	cursor: pointer
 }
 
 .nav-main > ul > li > a:hover {
@@ -161,16 +162,19 @@ header {
 /*!* Home section (slider + bg image) *!*/
 
 .slider-container {
-	margin-top: 100px;
-	height: calc(100vh - 100px);
+	padding-top: 100px;
+	height: 100vh;
 	width: 100%;
 	position: relative;
+	overflow: hidden;
 }
 
 .slider {
 	margin: 0;
 	padding: 0;
 	height: 100%;
+	width: 500%;
+	/*line-height: 0;*/
 }
 
 .slider-item:before {
@@ -181,11 +185,14 @@ header {
 }
 
 .slider-item {
-	height: 100%;
+	float: left;
 	background: url("../img/home-bg1.jpg") no-repeat center;
 	background: linear-gradient(to bottom, rgba(30, 30, 30, .5) 0%, rgba(30, 30, 30, .5) 100%), url("../img/home-bg1.jpg") no-repeat center;
 	background-size: cover;
-	width: 100%;
+	display: inline-block;
+	width: 20%;
+	height: 100%;
+	/*line-height: 1.5;*/
 }
 
 .slider-content {
@@ -235,6 +242,7 @@ header {
 	text-align: center;
 	padding: 10px;
 	position: absolute;
+	z-index: 5;
 }
 
 .slider-nav-left:hover, .slider-nav-right:hover {
