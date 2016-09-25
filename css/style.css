@@ -762,6 +762,7 @@ h1 {
 	background-color: #ffffff;
 	font-size: 16px;
 	line-height: 40px;
+	margin: 0 6px;
 }
 .image-mask-content i:hover{
 	background-color: #18cfab;

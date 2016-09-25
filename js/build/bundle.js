@@ -84,6 +84,10 @@
 
 	var _aboutApp2 = _interopRequireDefault(_aboutApp);
 
+	var _portfolioApp = __webpack_require__(329);
+
+	var _portfolioApp2 = _interopRequireDefault(_portfolioApp);
+
 	var _sliderReducer = __webpack_require__(310);
 
 	var _sliderReducer2 = _interopRequireDefault(_sliderReducer);
@@ -96,16 +100,19 @@
 
 	var _aboutReducer2 = _interopRequireDefault(_aboutReducer);
 
+	var _portfolioReducer = __webpack_require__(328);
+
+	var _portfolioReducer2 = _interopRequireDefault(_portfolioReducer);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	//------------------------------------------------------
 	var reducers = (0, _redux.combineReducers)({
 	    slider: _sliderReducer2.default,
 	    teamFacts: _teamFactsReducer2.default,
-	    about: _aboutReducer2.default
+	    about: _aboutReducer2.default,
+	    portfolio: _portfolioReducer2.default
 	});
-
-	//------------------------------------------------------
-
 
 	//------------------------------------------------------
 
@@ -132,6 +139,12 @@
 	    { store: store },
 	    _react2.default.createElement(_aboutApp2.default, null)
 	), document.getElementById('about-app'));
+
+	_reactDom2.default.render(_react2.default.createElement(
+	    _reactRedux.Provider,
+	    { store: store },
+	    _react2.default.createElement(_portfolioApp2.default, null)
+	), document.getElementById('portfolio'));
 
 	//------------------------------------------------------
 	// Add scroll links (header navigation and buttons)
@@ -27333,6 +27346,283 @@
 	}(_react2.default.Component);
 
 	exports.default = HistoryBlock;
+
+/***/ },
+/* 328 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _extends2 = __webpack_require__(1);
+
+	var _extends3 = _interopRequireDefault(_extends2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var stateInitial = {
+	    currLink: 0
+	};
+
+	var portfolioReducer = function portfolioReducer() {
+	    var state = arguments.length <= 0 || arguments[0] === undefined ? stateInitial : arguments[0];
+	    var action = arguments[1];
+
+
+	    switch (action.type) {
+	        case 'CHANGE_LINK':
+	            {
+	                return (0, _extends3.default)({}, state, { currLink: action.payload });
+	                break;
+	            }
+	        default:
+	            {
+	                return state;
+	            }
+	    }
+	};
+
+	exports.default = portfolioReducer;
+
+/***/ },
+/* 329 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _getPrototypeOf = __webpack_require__(252);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(257);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(258);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(262);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(297);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(39);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _redux = __webpack_require__(217);
+
+	var _reactRedux = __webpack_require__(210);
+
+	var _portfolioItem = __webpack_require__(330);
+
+	var _portfolioItem2 = _interopRequireDefault(_portfolioItem);
+
+	var _portfolioActions = __webpack_require__(331);
+
+	var actions = _interopRequireWildcard(_portfolioActions);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var allImages = [{ title: 'Image #1', category: 'Graphic Design', src: 'img/work-img1.jpg' }, { title: 'Image #2', category: 'Web Design', src: 'img/work-img2.jpg' }, { title: 'Image #3', category: 'Landing Pages', src: 'img/work-img3.jpg' }, { title: 'Image #4', category: 'Wordpress', src: 'img/work-img4.jpg' }, { title: 'Image #5', category: 'Graphic Design', src: 'img/work-img5.jpg' }, { title: 'Image #6', category: 'Web Design', src: 'img/work-img6.jpg' }];
+
+	var PortfolioApp = function (_React$Component) {
+	    (0, _inherits3.default)(PortfolioApp, _React$Component);
+
+	    function PortfolioApp(props) {
+	        (0, _classCallCheck3.default)(this, PortfolioApp);
+	        return (0, _possibleConstructorReturn3.default)(this, (PortfolioApp.__proto__ || (0, _getPrototypeOf2.default)(PortfolioApp)).call(this, props));
+	    }
+
+	    (0, _createClass3.default)(PortfolioApp, [{
+	        key: 'render',
+	        value: function render() {
+	            var _this2 = this;
+
+	            var categories = ['All', 'Graphic Design', 'Web Design', 'Landing Pages', 'Wordpress'];
+
+	            var currCat = categories[this.props.currLink];
+	            var currImages = allImages;
+
+	            if (currCat !== 'All') {
+	                currImages = allImages.filter(function (item) {
+	                    return currCat === item.category;
+	                });
+	            }
+
+	            var items = currImages.map(function (item, index) {
+	                return _react2.default.createElement(_portfolioItem2.default, { key: index, title: item.title, category: item.category, src: item.src });
+	            });
+
+	            var links = categories.map(function (item, index) {
+	                var classes = 'work-nav-item ' + (_this2.props.currLink === index ? 'active' : '');
+	                return _react2.default.createElement(
+	                    'li',
+	                    { key: index,
+	                        className: classes,
+	                        onClick: function onClick() {
+	                            return _this2.props.changeLink(index);
+	                        } },
+	                    item
+	                );
+	            });
+
+	            return _react2.default.createElement(
+	                'div',
+	                { id: 'about-block' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'work-nav-container' },
+	                    _react2.default.createElement(
+	                        'ul',
+	                        { className: 'work-nav' },
+	                        links
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'ul',
+	                    { className: 'work-images' },
+	                    items
+	                )
+	            );
+	        }
+	    }]);
+	    return PortfolioApp;
+	}(_react2.default.Component);
+
+	function mapStateToProps(state) {
+	    return {
+	        currLink: state.portfolio.currLink
+	    };
+	}
+
+	function matchDispatchToProps(dispatch) {
+	    return (0, _redux.bindActionCreators)({
+	        changeLink: actions.changeLink
+	    }, dispatch);
+	}
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, matchDispatchToProps)(PortfolioApp);
+
+/***/ },
+/* 330 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _getPrototypeOf = __webpack_require__(252);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(257);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(258);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(262);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(297);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(39);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var PortfolioItem = function (_React$Component) {
+	    (0, _inherits3.default)(PortfolioItem, _React$Component);
+
+	    function PortfolioItem(props) {
+	        (0, _classCallCheck3.default)(this, PortfolioItem);
+	        return (0, _possibleConstructorReturn3.default)(this, (PortfolioItem.__proto__ || (0, _getPrototypeOf2.default)(PortfolioItem)).call(this, props));
+	    }
+
+	    (0, _createClass3.default)(PortfolioItem, [{
+	        key: "render",
+	        value: function render() {
+	            return _react2.default.createElement(
+	                "li",
+	                { className: "work-images-item" },
+	                _react2.default.createElement("img", { src: this.props.src }),
+	                _react2.default.createElement(
+	                    "div",
+	                    { className: "image-mask" },
+	                    _react2.default.createElement(
+	                        "span",
+	                        { className: "image-mask-content" },
+	                        _react2.default.createElement(
+	                            "span",
+	                            null,
+	                            _react2.default.createElement(
+	                                "a",
+	                                { href: "javascript:void(0)" },
+	                                _react2.default.createElement("i", { className: "fa fa-link" })
+	                            ),
+	                            _react2.default.createElement(
+	                                "a",
+	                                { href: "javascript:void(0)" },
+	                                _react2.default.createElement("i", { className: "fa fa-search" })
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            "h1",
+	                            { className: "image-mask-title" },
+	                            this.props.title
+	                        ),
+	                        _react2.default.createElement(
+	                            "p",
+	                            { className: "image-mask-category" },
+	                            this.props.category
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	    return PortfolioItem;
+	}(_react2.default.Component);
+
+	exports.default = PortfolioItem;
+
+/***/ },
+/* 331 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	var changeLink = exports.changeLink = function changeLink(number) {
+	    return {
+	        type: 'CHANGE_LINK',
+	        payload: number
+	    };
+	};
 
 /***/ }
 /******/ ]);
