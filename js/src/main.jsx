@@ -12,6 +12,7 @@ import TeamFactsApp from './containers/teamFactsApp.jsx';
 import AboutApp from './containers/aboutApp.jsx';
 import PortfolioApp from './containers/portfolioApp.jsx';
 import ContactFormApp from './containers/contactFormApp.jsx';
+import FeedbackApp from './containers/feedbackApp.jsx';
 
 //------------------------------------------------------
 import sliderReducer from './reducers/sliderReducer';
@@ -19,13 +20,15 @@ import teamFactsReducer from './reducers/teamFactsReducer';
 import aboutReducer from './reducers/aboutReducer';
 import portfolioReducer from './reducers/portfolioReducer';
 import contactFormReducer from './reducers/contactFormReducer';
+import feedbackReducer from './reducers/feedbackReducer';
 
 const reducers = combineReducers({
     slider: sliderReducer,
     teamFacts: teamFactsReducer,
     about: aboutReducer,
     portfolio: portfolioReducer,
-    contactForm: contactFormReducer
+    contactForm: contactFormReducer,
+    feedback: feedbackReducer
 });
 
 const middleware = applyMiddleware(thunk);
@@ -66,6 +69,13 @@ ReactDOM.render(
         <ContactFormApp />
     </Provider>,
     document.getElementById('contact-form')
+);
+
+ReactDOM.render(
+    <Provider store={store}>
+        <FeedbackApp />
+    </Provider>,
+    document.getElementById('feedback-app')
 );
 
 

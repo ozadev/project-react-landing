@@ -92,6 +92,10 @@
 
 	var _contactFormApp2 = _interopRequireDefault(_contactFormApp);
 
+	var _feedbackApp = __webpack_require__(346);
+
+	var _feedbackApp2 = _interopRequireDefault(_feedbackApp);
+
 	var _sliderReducer = __webpack_require__(310);
 
 	var _sliderReducer2 = _interopRequireDefault(_sliderReducer);
@@ -112,18 +116,21 @@
 
 	var _contactFormReducer2 = _interopRequireDefault(_contactFormReducer);
 
+	var _feedbackReducer = __webpack_require__(335);
+
+	var _feedbackReducer2 = _interopRequireDefault(_feedbackReducer);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	//------------------------------------------------------
 	var reducers = (0, _redux.combineReducers)({
 	    slider: _sliderReducer2.default,
 	    teamFacts: _teamFactsReducer2.default,
 	    about: _aboutReducer2.default,
 	    portfolio: _portfolioReducer2.default,
-	    contactForm: _contactFormReducer2.default
+	    contactForm: _contactFormReducer2.default,
+	    feedback: _feedbackReducer2.default
 	});
-
-	//------------------------------------------------------
-
 
 	//------------------------------------------------------
 
@@ -162,6 +169,12 @@
 	    { store: store },
 	    _react2.default.createElement(_contactFormApp2.default, null)
 	), document.getElementById('contact-form'));
+
+	_reactDom2.default.render(_react2.default.createElement(
+	    _reactRedux.Provider,
+	    { store: store },
+	    _react2.default.createElement(_feedbackApp2.default, null)
+	), document.getElementById('feedback-app'));
 
 	//------------------------------------------------------
 	// Add scroll links (header navigation and buttons)
@@ -27867,6 +27880,853 @@
 	};
 
 	exports.default = portfolioReducer;
+
+/***/ },
+/* 335 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _toConsumableArray2 = __webpack_require__(336);
+
+	var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
+
+	var _extends2 = __webpack_require__(1);
+
+	var _extends3 = _interopRequireDefault(_extends2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var stateInitial = {
+	    messages: [],
+	    nextId: 1
+
+	};
+
+	var portfolioReducer = function portfolioReducer() {
+	    var state = arguments.length <= 0 || arguments[0] === undefined ? stateInitial : arguments[0];
+	    var action = arguments[1];
+
+
+	    switch (action.type) {
+	        case 'INIT_COMMENTS':
+	            {
+	                var messages = action.payload.map(function (item, index) {
+	                    return { id: index, title: item.title, text: item.text };
+	                });
+	                return (0, _extends3.default)({}, state, { messages: messages, nextId: messages.length });
+	            }
+	        case 'ADD_COMMENT':
+	            {
+	                var newMessage = {
+	                    id: state.nextId,
+	                    title: action.payload.title,
+	                    text: action.payload.message
+	                };
+
+	                return (0, _extends3.default)({}, state, { messages: [].concat((0, _toConsumableArray3.default)(state.messages), [newMessage]), nextId: state.nextId + 1 });
+	            }
+	        case 'REMOVE_COMMENT':
+	            {
+	                var _messages = state.messages.filter(function (item) {
+	                    return item.id != action.payload;
+	                });
+	                return (0, _extends3.default)({}, state, { messages: _messages });
+	            }
+	        default:
+	            {
+	                return state;
+	            }
+	    }
+	};
+
+	exports.default = portfolioReducer;
+
+/***/ },
+/* 336 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	exports.__esModule = true;
+
+	var _from = __webpack_require__(337);
+
+	var _from2 = _interopRequireDefault(_from);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = function (arr) {
+	  if (Array.isArray(arr)) {
+	    for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) {
+	      arr2[i] = arr[i];
+	    }
+
+	    return arr2;
+	  } else {
+	    return (0, _from2.default)(arr);
+	  }
+	};
+
+/***/ },
+/* 337 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = { "default": __webpack_require__(338), __esModule: true };
+
+/***/ },
+/* 338 */
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(266);
+	__webpack_require__(339);
+	module.exports = __webpack_require__(7).Array.from;
+
+/***/ },
+/* 339 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	var ctx            = __webpack_require__(8)
+	  , $export        = __webpack_require__(5)
+	  , toObject       = __webpack_require__(38)
+	  , call           = __webpack_require__(340)
+	  , isArrayIter    = __webpack_require__(341)
+	  , toLength       = __webpack_require__(29)
+	  , createProperty = __webpack_require__(342)
+	  , getIterFn      = __webpack_require__(343);
+
+	$export($export.S + $export.F * !__webpack_require__(345)(function(iter){ Array.from(iter); }), 'Array', {
+	  // 22.1.2.1 Array.from(arrayLike, mapfn = undefined, thisArg = undefined)
+	  from: function from(arrayLike/*, mapfn = undefined, thisArg = undefined*/){
+	    var O       = toObject(arrayLike)
+	      , C       = typeof this == 'function' ? this : Array
+	      , aLen    = arguments.length
+	      , mapfn   = aLen > 1 ? arguments[1] : undefined
+	      , mapping = mapfn !== undefined
+	      , index   = 0
+	      , iterFn  = getIterFn(O)
+	      , length, result, step, iterator;
+	    if(mapping)mapfn = ctx(mapfn, aLen > 2 ? arguments[2] : undefined, 2);
+	    // if object isn't iterable or it's array with default iterator - use simple case
+	    if(iterFn != undefined && !(C == Array && isArrayIter(iterFn))){
+	      for(iterator = iterFn.call(O), result = new C; !(step = iterator.next()).done; index++){
+	        createProperty(result, index, mapping ? call(iterator, mapfn, [step.value, index], true) : step.value);
+	      }
+	    } else {
+	      length = toLength(O.length);
+	      for(result = new C(length); length > index; index++){
+	        createProperty(result, index, mapping ? mapfn(O[index], index) : O[index]);
+	      }
+	    }
+	    result.length = index;
+	    return result;
+	  }
+	});
+
+
+/***/ },
+/* 340 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// call something on iterator step with safe closing on error
+	var anObject = __webpack_require__(12);
+	module.exports = function(iterator, fn, value, entries){
+	  try {
+	    return entries ? fn(anObject(value)[0], value[1]) : fn(value);
+	  // 7.4.6 IteratorClose(iterator, completion)
+	  } catch(e){
+	    var ret = iterator['return'];
+	    if(ret !== undefined)anObject(ret.call(iterator));
+	    throw e;
+	  }
+	};
+
+/***/ },
+/* 341 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// check on default Array iterator
+	var Iterators  = __webpack_require__(271)
+	  , ITERATOR   = __webpack_require__(277)('iterator')
+	  , ArrayProto = Array.prototype;
+
+	module.exports = function(it){
+	  return it !== undefined && (Iterators.Array === it || ArrayProto[ITERATOR] === it);
+	};
+
+/***/ },
+/* 342 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	var $defineProperty = __webpack_require__(11)
+	  , createDesc      = __webpack_require__(19);
+
+	module.exports = function(object, index, value){
+	  if(index in object)$defineProperty.f(object, index, createDesc(0, value));
+	  else object[index] = value;
+	};
+
+/***/ },
+/* 343 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var classof   = __webpack_require__(344)
+	  , ITERATOR  = __webpack_require__(277)('iterator')
+	  , Iterators = __webpack_require__(271);
+	module.exports = __webpack_require__(7).getIteratorMethod = function(it){
+	  if(it != undefined)return it[ITERATOR]
+	    || it['@@iterator']
+	    || Iterators[classof(it)];
+	};
+
+/***/ },
+/* 344 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// getting tag from 19.1.3.6 Object.prototype.toString()
+	var cof = __webpack_require__(26)
+	  , TAG = __webpack_require__(277)('toStringTag')
+	  // ES3 wrong here
+	  , ARG = cof(function(){ return arguments; }()) == 'Arguments';
+
+	// fallback for IE11 Script Access Denied error
+	var tryGet = function(it, key){
+	  try {
+	    return it[key];
+	  } catch(e){ /* empty */ }
+	};
+
+	module.exports = function(it){
+	  var O, T, B;
+	  return it === undefined ? 'Undefined' : it === null ? 'Null'
+	    // @@toStringTag case
+	    : typeof (T = tryGet(O = Object(it), TAG)) == 'string' ? T
+	    // builtinTag case
+	    : ARG ? cof(O)
+	    // ES3 arguments fallback
+	    : (B = cof(O)) == 'Object' && typeof O.callee == 'function' ? 'Arguments' : B;
+	};
+
+/***/ },
+/* 345 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var ITERATOR     = __webpack_require__(277)('iterator')
+	  , SAFE_CLOSING = false;
+
+	try {
+	  var riter = [7][ITERATOR]();
+	  riter['return'] = function(){ SAFE_CLOSING = true; };
+	  Array.from(riter, function(){ throw 2; });
+	} catch(e){ /* empty */ }
+
+	module.exports = function(exec, skipClosing){
+	  if(!skipClosing && !SAFE_CLOSING)return false;
+	  var safe = false;
+	  try {
+	    var arr  = [7]
+	      , iter = arr[ITERATOR]();
+	    iter.next = function(){ return {done: safe = true}; };
+	    arr[ITERATOR] = function(){ return iter; };
+	    exec(arr);
+	  } catch(e){ /* empty */ }
+	  return safe;
+	};
+
+/***/ },
+/* 346 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _getPrototypeOf = __webpack_require__(252);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(257);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(258);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(262);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(297);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(39);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _redux = __webpack_require__(217);
+
+	var _reactRedux = __webpack_require__(210);
+
+	var _reactCookie = __webpack_require__(349);
+
+	var _reactCookie2 = _interopRequireDefault(_reactCookie);
+
+	var _feedbackItem = __webpack_require__(347);
+
+	var _feedbackItem2 = _interopRequireDefault(_feedbackItem);
+
+	var _feedbackActions = __webpack_require__(348);
+
+	var actions = _interopRequireWildcard(_feedbackActions);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var FeedbackApp = function (_React$Component) {
+	    (0, _inherits3.default)(FeedbackApp, _React$Component);
+
+	    function FeedbackApp(props) {
+	        (0, _classCallCheck3.default)(this, FeedbackApp);
+
+	        var _this = (0, _possibleConstructorReturn3.default)(this, (FeedbackApp.__proto__ || (0, _getPrototypeOf2.default)(FeedbackApp)).call(this, props));
+
+	        _this.addCommentHandler = _this.addCommentHandler.bind(_this);
+	        _this.removeCommentHandler = _this.removeCommentHandler.bind(_this);
+	        return _this;
+	    }
+
+	    (0, _createClass3.default)(FeedbackApp, [{
+	        key: 'addCommentHandler',
+	        value: function addCommentHandler() {
+	            var title = document.getElementsByName('feedback-title')[0].value;
+	            var message = document.getElementsByName('feedback-message')[0].value;
+	            if (title === '' || message === '') {
+	                alert('Comment not added, require more data');
+	                return;
+	            }
+
+	            this.props.addComment({ title: title, message: message });
+
+	            document.getElementsByName('feedback-title')[0].value = '';
+	            document.getElementsByName('feedback-message')[0].value = '';
+	        }
+	    }, {
+	        key: 'removeCommentHandler',
+	        value: function removeCommentHandler(e) {
+	            this.props.removeComment(e.target.dataset.id);
+	        }
+	    }, {
+	        key: 'componentWillMount',
+	        value: function componentWillMount() {
+	            var data = _reactCookie2.default.load('messages');
+	            if (data === undefined) {
+	                data = [];
+	            }
+
+	            this.props.initComments(data);
+	        }
+	    }, {
+	        key: 'componentDidUpdate',
+	        value: function componentDidUpdate() {
+	            _reactCookie2.default.save('messages', this.props.messages, { path: '/' });
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var _this2 = this;
+
+	            var items = this.props.messages.map(function (item, index) {
+	                return _react2.default.createElement(_feedbackItem2.default, {
+	                    key: index,
+	                    id: item.id,
+	                    title: item.title,
+	                    message: item.text,
+	                    remove: _this2.removeCommentHandler });
+	            });
+
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'feedback-container' },
+	                    items
+	                ),
+	                _react2.default.createElement(
+	                    'form',
+	                    { className: 'row feedback-add-form' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'col-xs-12 col-sm-8 col-md-offset-1 col-md-6' },
+	                        _react2.default.createElement('input', { type: 'text', name: 'feedback-title', placeholder: 'Title' }),
+	                        _react2.default.createElement('textarea', { name: 'feedback-message', placeholder: 'Message' })
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'col-xs-12 col-sm-4 feedback-btn-container' },
+	                        _react2.default.createElement(
+	                            'h1',
+	                            null,
+	                            'Leave us a message'
+	                        ),
+	                        _react2.default.createElement(
+	                            'span',
+	                            { className: 'btn feedback-add-btn', onClick: this.addCommentHandler },
+	                            _react2.default.createElement('i', { className: 'fa fa-plus fa-1x' }),
+	                            'Add comment'
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	    return FeedbackApp;
+	}(_react2.default.Component);
+
+	function mapStateToProps(state) {
+	    return {
+	        messages: state.feedback.messages
+	    };
+	}
+
+	function matchDispatchToProps(dispatch) {
+	    return (0, _redux.bindActionCreators)({
+	        addComment: actions.addComment,
+	        removeComment: actions.removeComment,
+	        initComments: actions.initComments
+	    }, dispatch);
+	}
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, matchDispatchToProps)(FeedbackApp);
+
+/***/ },
+/* 347 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _getPrototypeOf = __webpack_require__(252);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(257);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(258);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(262);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(297);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(39);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var FeedbackItem = function (_React$Component) {
+	    (0, _inherits3.default)(FeedbackItem, _React$Component);
+
+	    function FeedbackItem(props) {
+	        (0, _classCallCheck3.default)(this, FeedbackItem);
+	        return (0, _possibleConstructorReturn3.default)(this, (FeedbackItem.__proto__ || (0, _getPrototypeOf2.default)(FeedbackItem)).call(this, props));
+	    }
+
+	    (0, _createClass3.default)(FeedbackItem, [{
+	        key: "render",
+	        value: function render() {
+	            return _react2.default.createElement(
+	                "div",
+	                { className: "feedback-item" },
+	                _react2.default.createElement(
+	                    "h2",
+	                    { className: "feedback-item-title" },
+	                    this.props.title
+	                ),
+	                _react2.default.createElement(
+	                    "p",
+	                    { className: "feedback-item-text" },
+	                    this.props.message
+	                ),
+	                _react2.default.createElement(
+	                    "span",
+	                    { className: "feedback-item-remove" },
+	                    _react2.default.createElement("i", { className: "fa fa-remove fa-1x", "data-id": this.props.id, onClick: this.props.remove })
+	                )
+	            );
+	        }
+	    }]);
+	    return FeedbackItem;
+	}(_react2.default.Component);
+
+	exports.default = FeedbackItem;
+
+/***/ },
+/* 348 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	var addComment = exports.addComment = function addComment(data) {
+	    return {
+	        type: 'ADD_COMMENT',
+	        payload: data
+	    };
+	};
+
+	var removeComment = exports.removeComment = function removeComment(id) {
+	    return {
+	        type: 'REMOVE_COMMENT',
+	        payload: id
+	    };
+	};
+
+	var initComments = exports.initComments = function initComments(data) {
+	    return {
+	        type: 'INIT_COMMENTS',
+	        payload: data
+	    };
+	};
+
+/***/ },
+/* 349 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var cookie = __webpack_require__(350);
+
+	if (typeof Object.assign != 'function') {
+	  Object.assign = function(target) {
+	    'use strict';
+	    if (target == null) {
+	      throw new TypeError('Cannot convert undefined or null to object');
+	    }
+
+	    target = Object(target);
+	    for (var index = 1; index < arguments.length; index++) {
+	      var source = arguments[index];
+	      if (source != null) {
+	        for (var key in source) {
+	          if (Object.prototype.hasOwnProperty.call(source, key)) {
+	            target[key] = source[key];
+	          }
+	        }
+	      }
+	    }
+	    return target;
+	  };
+	}
+
+	var _rawCookie = {};
+	var _res = undefined;
+
+	function _isResWritable() {
+	  if(!_res)
+	    return false
+	  if(_res.headersSent === true)
+	    return false
+	  return true
+	}
+
+	function load(name, doNotParse) {
+	  var cookies = (typeof document === 'undefined') ? _rawCookie : cookie.parse(document.cookie);
+	  var cookieVal = cookies && cookies[name];
+
+	  if (!doNotParse) {
+	    try {
+	      cookieVal = JSON.parse(cookieVal);
+	    } catch(e) {
+	      // Not serialized object
+	    }
+	  }
+
+	  return cookieVal;
+	}
+
+	function select(regex) {
+	  var cookies = (typeof document === 'undefined') ? _rawCookie : cookie.parse(document.cookie);
+	  if(!cookies)
+	    return {}
+	  if(!regex)
+	    return cookies
+	  return Object.keys(cookies)
+	    .reduce(function(accumulator, name) {
+	      if(!regex.test(name))
+	        return accumulator
+	      var newCookie = {}
+	      newCookie[name] = cookies[name]
+	      return Object.assign({}, accumulator, newCookie)
+	    }, {})
+	}
+
+	function save(name, val, opt) {
+	  _rawCookie[name] = val;
+
+	  // allow you to work with cookies as objects.
+	  if (typeof val === 'object') {
+	    _rawCookie[name] = JSON.stringify(val);
+	  }
+
+	  // Cookies only work in the browser
+	  if (typeof document !== 'undefined') {
+	    document.cookie = cookie.serialize(name, _rawCookie[name], opt);
+	  }
+
+	  if (_isResWritable() && _res.cookie) {
+	    _res.cookie(name, val, opt);
+	  }
+	}
+
+	function remove(name, opt) {
+	  delete _rawCookie[name];
+
+	  if (typeof opt === 'undefined') {
+	    opt = {};
+	  } else if (typeof opt === 'string') {
+	    // Will be deprecated in future versions
+	    opt = { path: opt };
+	  } else {
+	    // Prevent mutation of opt below
+	    opt = Object.assign({}, opt);
+	  }
+
+	  if (typeof document !== 'undefined') {
+	    opt.expires = new Date(1970, 1, 1, 0, 0, 1);
+	    document.cookie = cookie.serialize(name, '', opt);
+	  }
+
+	  if (_isResWritable() && _res.clearCookie) {
+	    _res.clearCookie(name, opt);
+	  }
+	}
+
+	function setRawCookie(rawCookie) {
+	  if (rawCookie) {
+	    _rawCookie = cookie.parse(rawCookie);
+	  } else {
+	    _rawCookie = {};
+	  }
+	}
+
+	function plugToRequest(req, res) {
+	  if (req.cookie) {
+	    _rawCookie = req.cookie;
+	  } else if (req.cookies) {
+	    _rawCookie = req.cookies;
+	  } else if (req.headers && req.headers.cookie) {
+	    setRawCookie(req.headers.cookie);
+	  } else {
+	    _rawCookie = {};
+	  }
+
+	  _res = res;
+	  return function unplug() {
+	    _res = null;
+	    _rawCookie = {};
+	  }
+	}
+
+	var reactCookie = {
+	  load: load,
+	  select: select,
+	  save: save,
+	  remove: remove,
+	  setRawCookie: setRawCookie,
+	  plugToRequest: plugToRequest
+	};
+
+	if (typeof window !== 'undefined') {
+	  window['reactCookie'] = reactCookie;
+	}
+
+	module.exports = reactCookie;
+
+
+/***/ },
+/* 350 */
+/***/ function(module, exports) {
+
+	/*!
+	 * cookie
+	 * Copyright(c) 2012-2014 Roman Shtylman
+	 * Copyright(c) 2015 Douglas Christopher Wilson
+	 * MIT Licensed
+	 */
+
+	/**
+	 * Module exports.
+	 * @public
+	 */
+
+	exports.parse = parse;
+	exports.serialize = serialize;
+
+	/**
+	 * Module variables.
+	 * @private
+	 */
+
+	var decode = decodeURIComponent;
+	var encode = encodeURIComponent;
+
+	/**
+	 * RegExp to match field-content in RFC 7230 sec 3.2
+	 *
+	 * field-content = field-vchar [ 1*( SP / HTAB ) field-vchar ]
+	 * field-vchar   = VCHAR / obs-text
+	 * obs-text      = %x80-FF
+	 */
+
+	var fieldContentRegExp = /^[\u0009\u0020-\u007e\u0080-\u00ff]+$/;
+
+	/**
+	 * Parse a cookie header.
+	 *
+	 * Parse the given cookie header string into an object
+	 * The object has the various cookies as keys(names) => values
+	 *
+	 * @param {string} str
+	 * @param {object} [options]
+	 * @return {object}
+	 * @public
+	 */
+
+	function parse(str, options) {
+	  if (typeof str !== 'string') {
+	    throw new TypeError('argument str must be a string');
+	  }
+
+	  var obj = {}
+	  var opt = options || {};
+	  var pairs = str.split(/; */);
+	  var dec = opt.decode || decode;
+
+	  pairs.forEach(function(pair) {
+	    var eq_idx = pair.indexOf('=')
+
+	    // skip things that don't look like key=value
+	    if (eq_idx < 0) {
+	      return;
+	    }
+
+	    var key = pair.substr(0, eq_idx).trim()
+	    var val = pair.substr(++eq_idx, pair.length).trim();
+
+	    // quoted values
+	    if ('"' == val[0]) {
+	      val = val.slice(1, -1);
+	    }
+
+	    // only assign once
+	    if (undefined == obj[key]) {
+	      obj[key] = tryDecode(val, dec);
+	    }
+	  });
+
+	  return obj;
+	}
+
+	/**
+	 * Serialize data into a cookie header.
+	 *
+	 * Serialize the a name value pair into a cookie string suitable for
+	 * http headers. An optional options object specified cookie parameters.
+	 *
+	 * serialize('foo', 'bar', { httpOnly: true })
+	 *   => "foo=bar; httpOnly"
+	 *
+	 * @param {string} name
+	 * @param {string} val
+	 * @param {object} [options]
+	 * @return {string}
+	 * @public
+	 */
+
+	function serialize(name, val, options) {
+	  var opt = options || {};
+	  var enc = opt.encode || encode;
+
+	  if (!fieldContentRegExp.test(name)) {
+	    throw new TypeError('argument name is invalid');
+	  }
+
+	  var value = enc(val);
+
+	  if (value && !fieldContentRegExp.test(value)) {
+	    throw new TypeError('argument val is invalid');
+	  }
+
+	  var pairs = [name + '=' + value];
+
+	  if (null != opt.maxAge) {
+	    var maxAge = opt.maxAge - 0;
+	    if (isNaN(maxAge)) throw new Error('maxAge should be a Number');
+	    pairs.push('Max-Age=' + maxAge);
+	  }
+
+	  if (opt.domain) {
+	    if (!fieldContentRegExp.test(opt.domain)) {
+	      throw new TypeError('option domain is invalid');
+	    }
+
+	    pairs.push('Domain=' + opt.domain);
+	  }
+
+	  if (opt.path) {
+	    if (!fieldContentRegExp.test(opt.path)) {
+	      throw new TypeError('option path is invalid');
+	    }
+
+	    pairs.push('Path=' + opt.path);
+	  }
+
+	  if (opt.expires) pairs.push('Expires=' + opt.expires.toUTCString());
+	  if (opt.httpOnly) pairs.push('HttpOnly');
+	  if (opt.secure) pairs.push('Secure');
+
+	  return pairs.join('; ');
+	}
+
+	/**
+	 * Try decoding a string using a decoding function.
+	 *
+	 * @param {string} str
+	 * @param {function} decode
+	 * @private
+	 */
+
+	function tryDecode(str, decode) {
+	  try {
+	    return decode(str);
+	  } catch (e) {
+	    return str;
+	  }
+	}
+
 
 /***/ }
 /******/ ]);
