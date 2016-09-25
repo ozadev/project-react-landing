@@ -77,8 +77,7 @@ function mapStateToProps(state) {
         currSlide: state.slider.currSlide,
         transitionDuration: state.slider.transitionDuration,
         sliderWidth: state.slider.sliderWidth,
-        hiddenChange: state.slider.hiddenChange,
-
+        hiddenChange: state.slider.hiddenChange
     }
 }  
 

@@ -76,22 +76,25 @@
 
 	var _navHeader2 = _interopRequireDefault(_navHeader);
 
+	var _teamFactsApp = __webpack_require__(311);
+
+	var _teamFactsApp2 = _interopRequireDefault(_teamFactsApp);
+
 	var _sliderReducer = __webpack_require__(310);
 
 	var _sliderReducer2 = _interopRequireDefault(_sliderReducer);
 
+	var _teamFactsReducer = __webpack_require__(313);
+
+	var _teamFactsReducer2 = _interopRequireDefault(_teamFactsReducer);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	// import usersReducer from './reducers/usersReducer';
-
-
-	var reducers = (0, _redux.combineReducers)({
-	    slider: _sliderReducer2.default
-	    // users: usersReducer
-	});
-
 	//------------------------------------------------------
-
+	var reducers = (0, _redux.combineReducers)({
+	    slider: _sliderReducer2.default,
+	    teamFacts: _teamFactsReducer2.default
+	});
 
 	//------------------------------------------------------
 
@@ -106,6 +109,12 @@
 	    { store: store },
 	    _react2.default.createElement(_sliderApp2.default, null)
 	), document.getElementById('slider-home'));
+
+	_reactDom2.default.render(_react2.default.createElement(
+	    _reactRedux.Provider,
+	    { store: store },
+	    _react2.default.createElement(_teamFactsApp2.default, null)
+	), document.getElementById('team-facts'));
 
 	//------------------------------------------------------
 	// Add scroll links (header navigation and buttons)
@@ -123,52 +132,6 @@
 	    (0, _extends3.default)({ className: 'footer-btn', to: 'home' }, scrollOptions),
 	    _react2.default.createElement('i', { className: 'fa fa-angle-up' })
 	), document.getElementById("btn-footer-top"));
-
-	//------------------------------------------------------
-	// Test section
-
-	// var curr = 1;
-	// var slider = document.querySelector(".slider");
-	// var width = slider.querySelector('.slider-item').clientWidth;
-	// slider.style.transitionDuration = '0s';
-	// slider.style.transform = 'translate3d(-' + width * curr + 'px, 0px, 0px)';
-	//
-	// function switchSlide(dir) {
-	//     var slider = document.querySelector(".slider");
-	//     var width = slider.querySelector('.slider-item').clientWidth;
-	//
-	//     if(dir) {
-	//         curr++;
-	//     }
-	//     else {
-	//         curr--
-	//     }
-	//
-	//     slider.style.transitionDuration = '1s';
-	//     slider.style.transform = 'translate3d(-' + width * curr + 'px, 0px, 0px)';
-	//
-	//     if(curr == 0) {
-	//         setTimeout(() => {
-	//             curr = 3;
-	//             slider.style.transitionDuration = '0s';
-	//             slider.style.transform = 'translate3d(-' + width * curr + 'px, 0px, 0px)';
-	//         }, 1000);
-	//
-	//     }
-	//
-	//     if(curr == 4) {
-	//         setTimeout(() => {
-	//             curr = 1;
-	//             slider.style.transitionDuration = '0s';
-	//             slider.style.transform = 'translate3d(-' + width * curr + 'px, 0px, 0px)';
-	//         }, 1000);
-	//     }
-	//
-	//
-	// }
-	//
-	// document.querySelector('.slider-nav-right').addEventListener('click', () => {switchSlide(1)});
-	// document.querySelector('.slider-nav-left').addEventListener('click', () => {switchSlide(0)});
 
 /***/ },
 /* 1 */
@@ -24832,7 +24795,6 @@
 	        transitionDuration: state.slider.transitionDuration,
 	        sliderWidth: state.slider.sliderWidth,
 	        hiddenChange: state.slider.hiddenChange
-
 	    };
 	}
 
@@ -26528,6 +26490,317 @@
 	};
 
 	exports.default = sliderReducer;
+
+/***/ },
+/* 311 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _getPrototypeOf = __webpack_require__(252);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(257);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(258);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(262);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(297);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(39);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _redux = __webpack_require__(217);
+
+	var _reactRedux = __webpack_require__(210);
+
+	var _teamFactsItem = __webpack_require__(312);
+
+	var _teamFactsItem2 = _interopRequireDefault(_teamFactsItem);
+
+	var _teamFactsActions = __webpack_require__(314);
+
+	var actions = _interopRequireWildcard(_teamFactsActions);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var data = [{ title: 'Works', number: 4609, favicon: _react2.default.createElement('i', { className: 'fa fa-briefcase fa-2x' }) }, { title: 'Customers', number: 3470, favicon: _react2.default.createElement('i', { className: 'fa fa-user fa-2x' }) }, { title: 'Purchase', number: 2908, favicon: _react2.default.createElement('i', { className: 'fa fa-shopping-cart fa-2x' }) }, { title: 'Office', number: 1908, favicon: _react2.default.createElement('i', { className: 'fa fa-map-marker fa-2x' }) }];
+
+	var TeamFactsApp = function (_React$Component) {
+	    (0, _inherits3.default)(TeamFactsApp, _React$Component);
+
+	    function TeamFactsApp(props) {
+	        (0, _classCallCheck3.default)(this, TeamFactsApp);
+
+	        var _this = (0, _possibleConstructorReturn3.default)(this, (TeamFactsApp.__proto__ || (0, _getPrototypeOf2.default)(TeamFactsApp)).call(this, props));
+
+	        _this.scrollHandler = _this.scrollHandler.bind(_this);
+	        return _this;
+	    }
+
+	    (0, _createClass3.default)(TeamFactsApp, [{
+	        key: 'componentWillMount',
+	        value: function componentWillMount() {
+	            this.props.initOptions(data.map(function (item) {
+	                return item.number;
+	            }));
+	        }
+	    }, {
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            document.addEventListener('scroll', this.scrollHandler);
+	        }
+	    }, {
+	        key: 'scrollHandler',
+	        value: function scrollHandler(e) {
+	            var top = document.querySelector('.team-facts').getBoundingClientRect().top;
+	            var bottom = document.querySelector('.team-facts').getBoundingClientRect().bottom;
+	            var headerOffset = 100;
+
+	            if (top <= document.documentElement.clientHeight && bottom >= headerOffset) {
+	                document.removeEventListener('scroll', this.scrollHandler);
+	                this.props.startCount(100);
+	            }
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var _this2 = this;
+
+	            if (this.props.finished) {
+	                this.props.stopCount();
+	            }
+
+	            var items = data.map(function (item, index) {
+	                return _react2.default.createElement(_teamFactsItem2.default, { key: index, title: item.title, number: _this2.props.currNumber[index], favicon: item.favicon });
+	            });
+
+	            return _react2.default.createElement(
+	                'ul',
+	                { className: 'team-facts clearfix' },
+	                items
+	            );
+	        }
+	    }]);
+	    return TeamFactsApp;
+	}(_react2.default.Component);
+
+	function mapStateToProps(state) {
+	    return {
+	        currNumber: state.teamFacts.currNumber,
+	        finished: state.teamFacts.finished
+	    };
+	}
+
+	function matchDispatchToProps(dispatch) {
+	    return (0, _redux.bindActionCreators)({
+	        initOptions: actions.initOptions,
+	        startCount: actions.startCount,
+	        stopCount: actions.stopCount
+	    }, dispatch);
+	}
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, matchDispatchToProps)(TeamFactsApp);
+
+/***/ },
+/* 312 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _getPrototypeOf = __webpack_require__(252);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(257);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(258);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(262);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(297);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(39);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var TeamFactsItem = function (_React$Component) {
+	    (0, _inherits3.default)(TeamFactsItem, _React$Component);
+
+	    function TeamFactsItem(props) {
+	        (0, _classCallCheck3.default)(this, TeamFactsItem);
+	        return (0, _possibleConstructorReturn3.default)(this, (TeamFactsItem.__proto__ || (0, _getPrototypeOf2.default)(TeamFactsItem)).call(this, props));
+	    }
+
+	    (0, _createClass3.default)(TeamFactsItem, [{
+	        key: "render",
+	        value: function render() {
+	            return _react2.default.createElement(
+	                "li",
+	                { className: "team-facts-item" },
+	                _react2.default.createElement(
+	                    "div",
+	                    { className: "fact-circle" },
+	                    this.props.favicon
+	                ),
+	                _react2.default.createElement(
+	                    "p",
+	                    { className: "fact-number" },
+	                    this.props.number
+	                ),
+	                _react2.default.createElement(
+	                    "h2",
+	                    { className: "fact-title" },
+	                    this.props.title
+	                )
+	            );
+	        }
+	    }]);
+	    return TeamFactsItem;
+	}(_react2.default.Component);
+
+	exports.default = TeamFactsItem;
+
+/***/ },
+/* 313 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _extends2 = __webpack_require__(1);
+
+	var _extends3 = _interopRequireDefault(_extends2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var time = 3000;
+	var steps = 30;
+
+	var stateInitial = {
+	    currNumber: [0, 0, 0, 0],
+	    finishNumber: [0, 0, 0, 0],
+	    incValues: [0, 0, 0, 0],
+	    finished: false
+	};
+
+	var teamFactsReducer = function teamFactsReducer() {
+	    var state = arguments.length <= 0 || arguments[0] === undefined ? stateInitial : arguments[0];
+	    var action = arguments[1];
+
+
+	    switch (action.type) {
+	        case 'INIT':
+	            {
+	                var finishNumber = action.payload;
+	                var incValues = finishNumber.map(function (item) {
+	                    return ~~(item / steps);
+	                });
+	                return (0, _extends3.default)({}, state, { finishNumber: finishNumber, incValues: incValues });
+	                break;
+	            }
+
+	        case 'NEXT_VAL':
+	            {
+	                var finished = false;
+
+	                var nextNumber = state.currNumber.map(function (item, index) {
+	                    var nextVal = item + state.incValues[index];
+	                    if (nextVal >= state.finishNumber[index]) {
+	                        finished = true;
+	                    }
+	                    return nextVal;
+	                });
+
+	                if (finished) {
+	                    nextNumber = state.finishNumber;
+	                }
+
+	                return (0, _extends3.default)({}, state, { currNumber: nextNumber }, { finished: finished });
+	                break;
+	            }
+
+	        default:
+	            {
+	                return state;
+	            }
+	    }
+	};
+
+	exports.default = teamFactsReducer;
+
+/***/ },
+/* 314 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	var countTimerId = void 0;
+
+	var initOptions = exports.initOptions = function initOptions(data) {
+	    return {
+	        type: 'INIT',
+	        payload: data
+	    };
+	};
+
+	var startCount = exports.startCount = function startCount(time) {
+	    return function (dispatch) {
+	        if (countTimerId !== undefined) {
+	            return;
+	        }
+	        countTimerId = setInterval(function () {
+	            dispatch({ type: 'NEXT_VAL' });
+	        }, time);
+	    };
+	};
+
+	var stopCount = exports.stopCount = function stopCount() {
+	    return function (dispatch) {
+	        if (countTimerId) {
+	            clearInterval(countTimerId);
+	            countTimerId = undefined;
+	        }
+	        dispatch({ type: 'FINISHED' });
+	    };
+	};
 
 /***/ }
 /******/ ]);

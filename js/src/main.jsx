@@ -8,15 +8,16 @@ import { Link as ScrollLink } from 'react-scroll';
 //------------------------------------------------------
 import SliderApp from './containers/sliderApp.jsx';
 import NavHead from './components/navHeader.jsx';
+import TeamFactsApp from './containers/teamFactsApp.jsx';
 
 //------------------------------------------------------
 import sliderReducer from './reducers/sliderReducer';
-// import usersReducer from './reducers/usersReducer';
+import teamFactsReducer from './reducers/teamFactsReducer';
 
 
 const reducers = combineReducers({
-    slider: sliderReducer
-    // users: usersReducer
+    slider: sliderReducer,
+    teamFacts: teamFactsReducer
 });
 
 const middleware = applyMiddleware(thunk);
@@ -31,6 +32,12 @@ ReactDOM.render(
     document.getElementById('slider-home')
 );
 
+ReactDOM.render(
+    <Provider store={store}>
+        <TeamFactsApp/>
+    </Provider>,
+    document.getElementById('team-facts')
+);
 
 
 
@@ -51,52 +58,3 @@ ReactDOM.render(
     <ScrollLink className="footer-btn" to="home" {...scrollOptions}><i className="fa fa-angle-up"></i></ScrollLink>,
     document.getElementById("btn-footer-top")
 );
-
-//------------------------------------------------------
-// Test section
-
-// var curr = 1;
-// var slider = document.querySelector(".slider");
-// var width = slider.querySelector('.slider-item').clientWidth;
-// slider.style.transitionDuration = '0s';
-// slider.style.transform = 'translate3d(-' + width * curr + 'px, 0px, 0px)';
-//
-// function switchSlide(dir) {
-//     var slider = document.querySelector(".slider");
-//     var width = slider.querySelector('.slider-item').clientWidth;
-//
-//     if(dir) {
-//         curr++;
-//     }
-//     else {
-//         curr--
-//     }
-//
-//     slider.style.transitionDuration = '1s';
-//     slider.style.transform = 'translate3d(-' + width * curr + 'px, 0px, 0px)';
-//
-//     if(curr == 0) {
-//         setTimeout(() => {
-//             curr = 3;
-//             slider.style.transitionDuration = '0s';
-//             slider.style.transform = 'translate3d(-' + width * curr + 'px, 0px, 0px)';
-//         }, 1000);
-//
-//     }
-//
-//     if(curr == 4) {
-//         setTimeout(() => {
-//             curr = 1;
-//             slider.style.transitionDuration = '0s';
-//             slider.style.transform = 'translate3d(-' + width * curr + 'px, 0px, 0px)';
-//         }, 1000);
-//     }
-//
-//
-// }
-//
-// document.querySelector('.slider-nav-right').addEventListener('click', () => {switchSlide(1)});
-// document.querySelector('.slider-nav-left').addEventListener('click', () => {switchSlide(0)});
-
-
-
