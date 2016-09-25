@@ -39,7 +39,7 @@ ReactDOM.render(
 //------------------------------------------------------
 // Add scroll links (header navigation and buttons)
 
-var scrollOptions = {
+let scrollOptions = {
     duration: 1000,
     offset: -100,
     smooth: true,
@@ -47,11 +47,6 @@ var scrollOptions = {
 };
 
 ReactDOM.render(<NavHead activeClass="nav-active" {...scrollOptions}/>, document.getElementById('nav-main'));
-// ReactDOM.render(<ScrollLink className="btn home-btn" to="work" {...scrollOptions}>Explore now</ScrollLink>, document.getElementById('btn-home-explore'));
-// ReactDOM.render(
-//     <ScrollLink className="btn home-btn" to="contact" {...scrollOptions}>Purchase now</ScrollLink>,
-//     document.getElementById('btn-home-purchase')
-// );
 ReactDOM.render(
     <ScrollLink className="footer-btn" to="home" {...scrollOptions}><i className="fa fa-angle-up"></i></ScrollLink>,
     document.getElementById("btn-footer-top")

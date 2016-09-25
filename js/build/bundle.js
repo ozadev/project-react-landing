@@ -118,11 +118,6 @@
 	};
 
 	_reactDom2.default.render(_react2.default.createElement(_navHeader2.default, (0, _extends3.default)({ activeClass: 'nav-active' }, scrollOptions)), document.getElementById('nav-main'));
-	// ReactDOM.render(<ScrollLink className="btn home-btn" to="work" {...scrollOptions}>Explore now</ScrollLink>, document.getElementById('btn-home-explore'));
-	// ReactDOM.render(
-	//     <ScrollLink className="btn home-btn" to="contact" {...scrollOptions}>Purchase now</ScrollLink>,
-	//     document.getElementById('btn-home-purchase')
-	// );
 	_reactDom2.default.render(_react2.default.createElement(
 	    _reactScroll.Link,
 	    (0, _extends3.default)({ className: 'footer-btn', to: 'home' }, scrollOptions),
@@ -24747,8 +24742,6 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	// import * as async from '../actions/async.js';
-
 	var SliderApp = function (_React$Component) {
 	    (0, _inherits3.default)(SliderApp, _React$Component);
 
@@ -25949,6 +25942,10 @@
 	    value: true
 	});
 
+	var _extends2 = __webpack_require__(1);
+
+	var _extends3 = _interopRequireDefault(_extends2);
+
 	var _getPrototypeOf = __webpack_require__(252);
 
 	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
@@ -25973,6 +25970,8 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _reactScroll = __webpack_require__(238);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var SliderItem1 = function (_React$Component) {
@@ -25986,6 +25985,13 @@
 	    (0, _createClass3.default)(SliderItem1, [{
 	        key: 'render',
 	        value: function render() {
+
+	            var scrollOptions = {
+	                duration: 1000,
+	                offset: -100,
+	                smooth: true,
+	                spy: true
+	            };
 
 	            var sliderItemBg = {
 	                background: 'linear-gradient(to bottom, rgba(30, 30, 30, .5) 0%, rgba(30, 30, 30, .5) 100%), url("./img/home-bg1.jpg") no-repeat center',
@@ -26024,8 +26030,16 @@
 	                        _react2.default.createElement(
 	                            'div',
 	                            { className: 'slider-btn-container' },
-	                            _react2.default.createElement('span', { name: 'btn-home-explore' }),
-	                            _react2.default.createElement('span', { name: 'btn-home-purchase' })
+	                            _react2.default.createElement(
+	                                _reactScroll.Link,
+	                                (0, _extends3.default)({ className: 'btn home-btn', to: 'work' }, scrollOptions),
+	                                'Explore now'
+	                            ),
+	                            _react2.default.createElement(
+	                                _reactScroll.Link,
+	                                (0, _extends3.default)({ className: 'btn home-btn', to: 'contact' }, scrollOptions),
+	                                'Purchase now'
+	                            )
 	                        )
 	                    )
 	                )
@@ -26046,6 +26060,10 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+
+	var _extends2 = __webpack_require__(1);
+
+	var _extends3 = _interopRequireDefault(_extends2);
 
 	var _getPrototypeOf = __webpack_require__(252);
 
@@ -26071,6 +26089,8 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _reactScroll = __webpack_require__(238);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var SliderItem2 = function (_React$Component) {
@@ -26084,6 +26104,13 @@
 	    (0, _createClass3.default)(SliderItem2, [{
 	        key: 'render',
 	        value: function render() {
+
+	            var scrollOptions = {
+	                duration: 1000,
+	                offset: -100,
+	                smooth: true,
+	                spy: true
+	            };
 
 	            var sliderItemBg = {
 	                background: 'linear-gradient(to bottom, rgba(30, 30, 30, .5) 0%, rgba(30, 30, 30, .5) 100%), url("./img/home-bg2.jpg") no-repeat center',
@@ -26122,8 +26149,16 @@
 	                        _react2.default.createElement(
 	                            'div',
 	                            { className: 'slider-btn-container' },
-	                            _react2.default.createElement('span', { name: 'btn-home-explore' }),
-	                            _react2.default.createElement('span', { name: 'btn-home-purchase' })
+	                            _react2.default.createElement(
+	                                _reactScroll.Link,
+	                                (0, _extends3.default)({ className: 'btn home-btn', to: 'work' }, scrollOptions),
+	                                'Explore now'
+	                            ),
+	                            _react2.default.createElement(
+	                                _reactScroll.Link,
+	                                (0, _extends3.default)({ className: 'btn home-btn', to: 'contact' }, scrollOptions),
+	                                'Purchase now'
+	                            )
 	                        )
 	                    )
 	                )
@@ -26144,6 +26179,10 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+
+	var _extends2 = __webpack_require__(1);
+
+	var _extends3 = _interopRequireDefault(_extends2);
 
 	var _getPrototypeOf = __webpack_require__(252);
 
@@ -26169,6 +26208,8 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _reactScroll = __webpack_require__(238);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var SliderItem3 = function (_React$Component) {
@@ -26182,6 +26223,13 @@
 	    (0, _createClass3.default)(SliderItem3, [{
 	        key: 'render',
 	        value: function render() {
+
+	            var scrollOptions = {
+	                duration: 1000,
+	                offset: -100,
+	                smooth: true,
+	                spy: true
+	            };
 
 	            var sliderItemBg = {
 	                background: 'linear-gradient(to bottom, rgba(30, 30, 30, .5) 0%, rgba(30, 30, 30, .5) 100%), url("./img/home-bg3.jpg") no-repeat center',
@@ -26220,8 +26268,16 @@
 	                        _react2.default.createElement(
 	                            'div',
 	                            { className: 'slider-btn-container' },
-	                            _react2.default.createElement('span', { name: 'btn-home-explore' }),
-	                            _react2.default.createElement('span', { name: 'btn-home-purchase' })
+	                            _react2.default.createElement(
+	                                _reactScroll.Link,
+	                                (0, _extends3.default)({ className: 'btn home-btn', to: 'work' }, scrollOptions),
+	                                'Explore now'
+	                            ),
+	                            _react2.default.createElement(
+	                                _reactScroll.Link,
+	                                (0, _extends3.default)({ className: 'btn home-btn', to: 'contact' }, scrollOptions),
+	                                'Purchase now'
+	                            )
 	                        )
 	                    )
 	                )

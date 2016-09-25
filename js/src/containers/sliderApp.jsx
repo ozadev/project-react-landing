@@ -8,8 +8,6 @@ import SliderItem3 from '../components/slider/sliderItem3.jsx';
 
 import * as actions from '../actions/sliderActions.js';
 
-// import * as async from '../actions/async.js';
-
 class SliderApp extends React.Component {
     constructor(props) {
         super(props);

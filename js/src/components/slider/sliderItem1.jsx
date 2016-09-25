@@ -1,10 +1,18 @@
 ﻿import React from 'react';
+import { Link as ScrollLink } from 'react-scroll';
 
 class SliderItem1 extends React.Component {
     constructor(props) {
         super(props);
     }
     render() {
+
+        let scrollOptions = {
+            duration: 1000,
+            offset: -100,
+            smooth: true,
+            spy: true
+        };
 
         let sliderItemBg = {
             background: 'linear-gradient(to bottom, rgba(30, 30, 30, .5) 0%, rgba(30, 30, 30, .5) 100%), url("./img/home-bg1.jpg") no-repeat center',
@@ -19,8 +27,8 @@ class SliderItem1 extends React.Component {
                         <h2 className="slider-text2">We are creative</h2>
                         <p className="slider-text3">Nam varius accumsan elementum aliquam</p>
                         <div className="slider-btn-container">
-                            <span name="btn-home-explore"></span>
-                            <span name="btn-home-purchase"></span>
+                            <ScrollLink className="btn home-btn" to="work" {...scrollOptions}>Explore now</ScrollLink>
+                            <ScrollLink className="btn home-btn" to="contact" {...scrollOptions}>Purchase now</ScrollLink>
                         </div>
                     </div>
                 </div>
