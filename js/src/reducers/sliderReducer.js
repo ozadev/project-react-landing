@@ -14,7 +14,15 @@ const sliderReducer = (state = stateInitial, action) => {
     switch (action.type) {
         case 'CHANGE_SLIDE': {
             let hiddenChange = false;
-            let nextSlide = action.payload;
+
+            if (action.payload !== 'prev' && action.payload !== 'next') {
+                console.error("Slider error: invalid direction, default slider direction is 'next'.");
+            }
+            // Next slide by default
+            let nextSlide = state.currSlide + 1;
+            if (action.payload === 'prev') {
+                nextSlide = state.currSlide - 1;
+            }
 
             if (nextSlide == 0 || nextSlide == slidesCount + 1) {
                 hiddenChange = true;

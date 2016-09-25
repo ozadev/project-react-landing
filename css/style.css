@@ -186,8 +186,7 @@ header {
 
 .slider-item {
 	float: left;
-	background: url("../img/home-bg1.jpg") no-repeat center;
-	background: linear-gradient(to bottom, rgba(30, 30, 30, .5) 0%, rgba(30, 30, 30, .5) 100%), url("../img/home-bg1.jpg") no-repeat center;
+	/*background: url("../img/home-bg1.jpg") no-repeat center;*/
 	background-size: cover;
 	display: inline-block;
 	width: 20%;

@@ -17,25 +17,25 @@ class SliderApp extends React.Component {
         this.switchNextSlide = this.switchNextSlide.bind(this);
         this.switchPrevSlide = this.switchPrevSlide.bind(this);
     }
-    // shouldComponentUpdate() {
-    //     this.setState({slideWidth: document.querySelector('.slider-item').clientWidth});
-    //     console.log(this.state.slideWidth);
-    //     return true;
-    // }
 
+    componentDidMount() {
+        this.props.switchAuto();
+    }
 
     switchNextSlide() {
         if (this.props.hiddenChange)
             return;
 
-        this.props.switchToSlide(this.props.currSlide + 1);
+        this.props.switchToSlide('next');
+        this.props.switchAutoEnable();
     }
 
     switchPrevSlide() {
         if (this.props.hiddenChange)
             return;
 
-        this.props.switchToSlide(this.props.currSlide - 1);
+        this.props.switchToSlide('prev');
+        this.props.switchAutoEnable();
     }
 
     render() {
@@ -87,7 +87,9 @@ function mapStateToProps(state) {
 function matchDispatchToProps(dispatch) {
     return bindActionCreators({
         switchToSlide: actions.switchToSlide,
-        switchTimeoutHidden: actions.switchTimeoutHidden
+        switchTimeoutHidden: actions.switchTimeoutHidden,
+        switchAuto: actions.switchAuto,
+        switchAutoEnable: actions.switchAutoEnable
     }, dispatch)
 }
 

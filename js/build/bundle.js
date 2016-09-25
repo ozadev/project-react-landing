@@ -76,7 +76,7 @@
 
 	var _navHeader2 = _interopRequireDefault(_navHeader);
 
-	var _sliderReducer = __webpack_require__(311);
+	var _sliderReducer = __webpack_require__(310);
 
 	var _sliderReducer2 = _interopRequireDefault(_sliderReducer);
 
@@ -24761,26 +24761,27 @@
 	        _this.switchPrevSlide = _this.switchPrevSlide.bind(_this);
 	        return _this;
 	    }
-	    // shouldComponentUpdate() {
-	    //     this.setState({slideWidth: document.querySelector('.slider-item').clientWidth});
-	    //     console.log(this.state.slideWidth);
-	    //     return true;
-	    // }
-
 
 	    (0, _createClass3.default)(SliderApp, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            this.props.switchAuto();
+	        }
+	    }, {
 	        key: 'switchNextSlide',
 	        value: function switchNextSlide() {
 	            if (this.props.hiddenChange) return;
 
-	            this.props.switchToSlide(this.props.currSlide + 1);
+	            this.props.switchToSlide('next');
+	            this.props.switchAutoEnable();
 	        }
 	    }, {
 	        key: 'switchPrevSlide',
 	        value: function switchPrevSlide() {
 	            if (this.props.hiddenChange) return;
 
-	            this.props.switchToSlide(this.props.currSlide - 1);
+	            this.props.switchToSlide('prev');
+	            this.props.switchAutoEnable();
 	        }
 	    }, {
 	        key: 'render',
@@ -24845,7 +24846,9 @@
 	function matchDispatchToProps(dispatch) {
 	    return (0, _redux.bindActionCreators)({
 	        switchToSlide: actions.switchToSlide,
-	        switchTimeoutHidden: actions.switchTimeoutHidden
+	        switchTimeoutHidden: actions.switchTimeoutHidden,
+	        switchAuto: actions.switchAuto,
+	        switchAutoEnable: actions.switchAutoEnable
 	    }, dispatch);
 	}
 
@@ -25940,7 +25943,7 @@
 /* 305 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -25981,42 +25984,47 @@
 	    }
 
 	    (0, _createClass3.default)(SliderItem1, [{
-	        key: "render",
+	        key: 'render',
 	        value: function render() {
+
+	            var sliderItemBg = {
+	                background: 'linear-gradient(to bottom, rgba(30, 30, 30, .5) 0%, rgba(30, 30, 30, .5) 100%), url("./img/home-bg1.jpg") no-repeat center'
+	            };
+
 	            return _react2.default.createElement(
-	                "li",
-	                { className: "slider-item" },
+	                'li',
+	                { className: 'slider-item', style: sliderItemBg },
 	                _react2.default.createElement(
-	                    "div",
-	                    { className: "slider-content" },
+	                    'div',
+	                    { className: 'slider-content' },
 	                    _react2.default.createElement(
-	                        "div",
-	                        { className: "container slider-content-container" },
+	                        'div',
+	                        { className: 'container slider-content-container' },
 	                        _react2.default.createElement(
-	                            "h1",
-	                            { className: "slider-text1" },
-	                            "#1 The ham is ",
+	                            'h1',
+	                            { className: 'slider-text1' },
+	                            '#1 The ham is ',
 	                            _react2.default.createElement(
-	                                "span",
-	                                { className: "text-highlight" },
-	                                "a psd template"
+	                                'span',
+	                                { className: 'text-highlight' },
+	                                'a psd template'
 	                            )
 	                        ),
 	                        _react2.default.createElement(
-	                            "h2",
-	                            { className: "slider-text2" },
-	                            "We are creative"
+	                            'h2',
+	                            { className: 'slider-text2' },
+	                            'We are creative'
 	                        ),
 	                        _react2.default.createElement(
-	                            "p",
-	                            { className: "slider-text3" },
-	                            "Nam varius accumsan elementum aliquam"
+	                            'p',
+	                            { className: 'slider-text3' },
+	                            'Nam varius accumsan elementum aliquam'
 	                        ),
 	                        _react2.default.createElement(
-	                            "div",
-	                            { className: "slider-btn-container" },
-	                            _react2.default.createElement("span", { name: "btn-home-explore" }),
-	                            _react2.default.createElement("span", { name: "btn-home-purchase" })
+	                            'div',
+	                            { className: 'slider-btn-container' },
+	                            _react2.default.createElement('span', { name: 'btn-home-explore' }),
+	                            _react2.default.createElement('span', { name: 'btn-home-purchase' })
 	                        )
 	                    )
 	                )
@@ -26032,7 +26040,7 @@
 /* 306 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -26073,42 +26081,47 @@
 	    }
 
 	    (0, _createClass3.default)(SliderItem2, [{
-	        key: "render",
+	        key: 'render',
 	        value: function render() {
+
+	            var sliderItemBg = {
+	                background: 'linear-gradient(to bottom, rgba(30, 30, 30, .5) 0%, rgba(30, 30, 30, .5) 100%), url("./img/home-bg2.jpg") no-repeat center'
+	            };
+
 	            return _react2.default.createElement(
-	                "li",
-	                { className: "slider-item" },
+	                'li',
+	                { className: 'slider-item', style: sliderItemBg },
 	                _react2.default.createElement(
-	                    "div",
-	                    { className: "slider-content" },
+	                    'div',
+	                    { className: 'slider-content' },
 	                    _react2.default.createElement(
-	                        "div",
-	                        { className: "container slider-content-container" },
+	                        'div',
+	                        { className: 'container slider-content-container' },
 	                        _react2.default.createElement(
-	                            "h1",
-	                            { className: "slider-text1" },
-	                            "#2 The ham is ",
+	                            'h1',
+	                            { className: 'slider-text1' },
+	                            '#2 The ham is ',
 	                            _react2.default.createElement(
-	                                "span",
-	                                { className: "text-highlight" },
-	                                "a psd template"
+	                                'span',
+	                                { className: 'text-highlight' },
+	                                'a psd template'
 	                            )
 	                        ),
 	                        _react2.default.createElement(
-	                            "h2",
-	                            { className: "slider-text2" },
-	                            "We are fast"
+	                            'h2',
+	                            { className: 'slider-text2' },
+	                            'We are fast'
 	                        ),
 	                        _react2.default.createElement(
-	                            "p",
-	                            { className: "slider-text3" },
-	                            "Lorem ipsum dolor sit amet, his ea."
+	                            'p',
+	                            { className: 'slider-text3' },
+	                            'Lorem ipsum dolor sit amet, his ea.'
 	                        ),
 	                        _react2.default.createElement(
-	                            "div",
-	                            { className: "slider-btn-container" },
-	                            _react2.default.createElement("span", { name: "btn-home-explore" }),
-	                            _react2.default.createElement("span", { name: "btn-home-purchase" })
+	                            'div',
+	                            { className: 'slider-btn-container' },
+	                            _react2.default.createElement('span', { name: 'btn-home-explore' }),
+	                            _react2.default.createElement('span', { name: 'btn-home-purchase' })
 	                        )
 	                    )
 	                )
@@ -26124,7 +26137,7 @@
 /* 307 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -26165,42 +26178,47 @@
 	    }
 
 	    (0, _createClass3.default)(SliderItem3, [{
-	        key: "render",
+	        key: 'render',
 	        value: function render() {
+
+	            var sliderItemBg = {
+	                background: 'linear-gradient(to bottom, rgba(30, 30, 30, .5) 0%, rgba(30, 30, 30, .5) 100%), url("./img/home-bg3.jpg") no-repeat center'
+	            };
+
 	            return _react2.default.createElement(
-	                "li",
-	                { className: "slider-item" },
+	                'li',
+	                { className: 'slider-item', style: sliderItemBg },
 	                _react2.default.createElement(
-	                    "div",
-	                    { className: "slider-content" },
+	                    'div',
+	                    { className: 'slider-content' },
 	                    _react2.default.createElement(
-	                        "div",
-	                        { className: "container slider-content-container" },
+	                        'div',
+	                        { className: 'container slider-content-container' },
 	                        _react2.default.createElement(
-	                            "h1",
-	                            { className: "slider-text1" },
-	                            "#3 The ham is ",
+	                            'h1',
+	                            { className: 'slider-text1' },
+	                            '#3 The ham is ',
 	                            _react2.default.createElement(
-	                                "span",
-	                                { className: "text-highlight" },
-	                                "a psd template"
+	                                'span',
+	                                { className: 'text-highlight' },
+	                                'a psd template'
 	                            )
 	                        ),
 	                        _react2.default.createElement(
-	                            "h2",
-	                            { className: "slider-text2" },
-	                            "We are professionals"
+	                            'h2',
+	                            { className: 'slider-text2' },
+	                            'We are professionals'
 	                        ),
 	                        _react2.default.createElement(
-	                            "p",
-	                            { className: "slider-text3" },
-	                            "Zril mandamus eos ne, sed audire facilisis ex"
+	                            'p',
+	                            { className: 'slider-text3' },
+	                            'Zril mandamus eos ne, sed audire facilisis ex'
 	                        ),
 	                        _react2.default.createElement(
-	                            "div",
-	                            { className: "slider-btn-container" },
-	                            _react2.default.createElement("span", { name: "btn-home-explore" }),
-	                            _react2.default.createElement("span", { name: "btn-home-purchase" })
+	                            'div',
+	                            { className: 'slider-btn-container' },
+	                            _react2.default.createElement('span', { name: 'btn-home-explore' }),
+	                            _react2.default.createElement('span', { name: 'btn-home-purchase' })
 	                        )
 	                    )
 	                )
@@ -26221,10 +26239,22 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	var switchToSlide = exports.switchToSlide = function switchToSlide(number) {
+	var switchAutoTimerId = void 0;
+	var switchAutoEnableTimerId = void 0;
+
+	var switchToSlide = exports.switchToSlide = function switchToSlide(direction) {
+	    if (switchAutoTimerId) {
+	        clearInterval(switchAutoTimerId);
+	        switchAutoTimerId = undefined;
+	    }
+	    if (switchAutoEnableTimerId) {
+	        clearTimeout(switchAutoEnableTimerId);
+	        switchAutoEnableTimerId = undefined;
+	    }
+
 	    return {
 	        type: 'CHANGE_SLIDE',
-	        payload: number
+	        payload: direction
 	    };
 	};
 
@@ -26236,19 +26266,28 @@
 	    };
 	};
 
-	//
-	// export function fetchUsers(path) {
-	//     return function(dispatch) {
-	//         dispatch(requestUsers());
-	//
-	//         return (
-	//             fetch(path)
-	//                 .then(response => response.json())
-	//                 .then(json => dispatch(receiveUsers(json)))
-	//                 .catch(() => dispatch(fetchError()))
-	//         )
-	//     }
-	// }
+	var switchAuto = exports.switchAuto = function switchAuto() {
+	    return function (dispatch) {
+	        if (switchAutoTimerId !== undefined) {
+	            return;
+	        }
+	        switchAutoTimerId = setInterval(function () {
+	            dispatch({ type: 'CHANGE_SLIDE', payload: 'next' });
+	        }, 3000);
+	    };
+	};
+
+	var switchAutoEnable = exports.switchAutoEnable = function switchAutoEnable() {
+	    return function (dispatch) {
+	        if (switchAutoEnableTimerId !== undefined) {
+	            return;
+	        }
+	        switchAutoEnableTimerId = setTimeout(function () {
+	            dispatch(switchAuto());
+	        }, 2000);
+	        // 2s + 3s (for slide change) ==> 5s delay
+	    };
+	};
 
 /***/ },
 /* 309 */
@@ -26362,8 +26401,7 @@
 	exports.default = NavHeader;
 
 /***/ },
-/* 310 */,
-/* 311 */
+/* 310 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26397,7 +26435,15 @@
 	        case 'CHANGE_SLIDE':
 	            {
 	                var hiddenChange = false;
-	                var nextSlide = action.payload;
+
+	                if (action.payload !== 'prev' && action.payload !== 'next') {
+	                    console.error("Slider error: invalid direction, default slider direction is 'next'.");
+	                }
+	                // Next slide by default
+	                var nextSlide = state.currSlide + 1;
+	                if (action.payload === 'prev') {
+	                    nextSlide = state.currSlide - 1;
+	                }
 
 	                if (nextSlide == 0 || nextSlide == slidesCount + 1) {
 	                    hiddenChange = true;
