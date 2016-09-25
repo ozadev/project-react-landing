@@ -7,7 +7,8 @@ class SliderItem3 extends React.Component {
     render() {
 
         let sliderItemBg = {
-            background: 'linear-gradient(to bottom, rgba(30, 30, 30, .5) 0%, rgba(30, 30, 30, .5) 100%), url("./img/home-bg3.jpg") no-repeat center'
+            background: 'linear-gradient(to bottom, rgba(30, 30, 30, .5) 0%, rgba(30, 30, 30, .5) 100%), url("./img/home-bg3.jpg") no-repeat center',
+            backgroundSize: 'cover'
         };
 
         return (
