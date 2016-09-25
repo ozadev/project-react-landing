@@ -80,7 +80,6 @@ header {
 }
 
 .logo-text-part2 {
-	margin-left: -5px;
 	font-weight: bold;
 	color: #18cfab;
 }
@@ -1207,6 +1206,11 @@ h1 {
 	box-shadow: inset 0 -5px 0 0 #08bf9b;
 }
 
+.contact-form .error {
+	font-size: 14px;
+	color: red;
+}
+
 /*!* Footer *!*/
 
 .footer-container {
@@ -1240,6 +1244,7 @@ h1 {
 	background-color: #18cfab;
 	margin: 20px;
 	line-height: 42px;
+	cursor: pointer;
 }
 
 .footer-btn:hover {

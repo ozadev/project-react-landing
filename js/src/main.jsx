@@ -11,18 +11,21 @@ import NavHead from './components/navHeader.jsx';
 import TeamFactsApp from './containers/teamFactsApp.jsx';
 import AboutApp from './containers/aboutApp.jsx';
 import PortfolioApp from './containers/portfolioApp.jsx';
+import ContactFormApp from './containers/contactFormApp.jsx';
 
 //------------------------------------------------------
 import sliderReducer from './reducers/sliderReducer';
 import teamFactsReducer from './reducers/teamFactsReducer';
 import aboutReducer from './reducers/aboutReducer';
 import portfolioReducer from './reducers/portfolioReducer';
+import contactFormReducer from './reducers/contactFormReducer';
 
 const reducers = combineReducers({
     slider: sliderReducer,
     teamFacts: teamFactsReducer,
     about: aboutReducer,
-    portfolio: portfolioReducer
+    portfolio: portfolioReducer,
+    contactForm: contactFormReducer
 });
 
 const middleware = applyMiddleware(thunk);
@@ -58,6 +61,13 @@ ReactDOM.render(
     document.getElementById('portfolio')
 );
 
+ReactDOM.render(
+    <Provider store={store}>
+        <ContactFormApp />
+    </Provider>,
+    document.getElementById('contact-form')
+);
+
 
 
 
@@ -75,4 +85,13 @@ ReactDOM.render(<NavHead activeClass="nav-active" {...scrollOptions}/>, document
 ReactDOM.render(
     <ScrollLink className="footer-btn" to="home" {...scrollOptions}><i className="fa fa-angle-up" /></ScrollLink>,
     document.getElementById("btn-footer-top")
+);
+
+ReactDOM.render(
+    <ScrollLink style={{cursor: 'pointer'}} to="home" {...scrollOptions}>
+        <span className="logo-img" />
+        <span className="logo-text logo-text-part1">the</span>
+        <span className="logo-text logo-text-part2">Ham</span>
+    </ScrollLink>,
+    document.querySelector(".logo-container")
 );

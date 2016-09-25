@@ -88,6 +88,10 @@
 
 	var _portfolioApp2 = _interopRequireDefault(_portfolioApp);
 
+	var _contactFormApp = __webpack_require__(332);
+
+	var _contactFormApp2 = _interopRequireDefault(_contactFormApp);
+
 	var _sliderReducer = __webpack_require__(310);
 
 	var _sliderReducer2 = _interopRequireDefault(_sliderReducer);
@@ -104,15 +108,22 @@
 
 	var _portfolioReducer2 = _interopRequireDefault(_portfolioReducer);
 
+	var _contactFormReducer = __webpack_require__(334);
+
+	var _contactFormReducer2 = _interopRequireDefault(_contactFormReducer);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	//------------------------------------------------------
 	var reducers = (0, _redux.combineReducers)({
 	    slider: _sliderReducer2.default,
 	    teamFacts: _teamFactsReducer2.default,
 	    about: _aboutReducer2.default,
-	    portfolio: _portfolioReducer2.default
+	    portfolio: _portfolioReducer2.default,
+	    contactForm: _contactFormReducer2.default
 	});
+
+	//------------------------------------------------------
+
 
 	//------------------------------------------------------
 
@@ -146,6 +157,12 @@
 	    _react2.default.createElement(_portfolioApp2.default, null)
 	), document.getElementById('portfolio'));
 
+	_reactDom2.default.render(_react2.default.createElement(
+	    _reactRedux.Provider,
+	    { store: store },
+	    _react2.default.createElement(_contactFormApp2.default, null)
+	), document.getElementById('contact-form'));
+
 	//------------------------------------------------------
 	// Add scroll links (header navigation and buttons)
 
@@ -162,6 +179,22 @@
 	    (0, _extends3.default)({ className: 'footer-btn', to: 'home' }, scrollOptions),
 	    _react2.default.createElement('i', { className: 'fa fa-angle-up' })
 	), document.getElementById("btn-footer-top"));
+
+	_reactDom2.default.render(_react2.default.createElement(
+	    _reactScroll.Link,
+	    (0, _extends3.default)({ style: { cursor: 'pointer' }, to: 'home' }, scrollOptions),
+	    _react2.default.createElement('span', { className: 'logo-img' }),
+	    _react2.default.createElement(
+	        'span',
+	        { className: 'logo-text logo-text-part1' },
+	        'the'
+	    ),
+	    _react2.default.createElement(
+	        'span',
+	        { className: 'logo-text logo-text-part2' },
+	        'Ham'
+	    )
+	), document.querySelector(".logo-container"));
 
 /***/ },
 /* 1 */
@@ -27623,6 +27656,217 @@
 	        payload: number
 	    };
 	};
+
+/***/ },
+/* 332 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _getPrototypeOf = __webpack_require__(252);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(257);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(258);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(262);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(297);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(39);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _redux = __webpack_require__(217);
+
+	var _reactRedux = __webpack_require__(210);
+
+	var _contactFormActions = __webpack_require__(333);
+
+	var actions = _interopRequireWildcard(_contactFormActions);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var ContactFromApp = function (_React$Component) {
+	    (0, _inherits3.default)(ContactFromApp, _React$Component);
+
+	    function ContactFromApp(props) {
+	        (0, _classCallCheck3.default)(this, ContactFromApp);
+
+	        var _this = (0, _possibleConstructorReturn3.default)(this, (ContactFromApp.__proto__ || (0, _getPrototypeOf2.default)(ContactFromApp)).call(this, props));
+
+	        _this.changeFieldHandler = _this.changeFieldHandler.bind(_this);
+	        _this.handlerSubmit = _this.handlerSubmit.bind(_this);
+	        return _this;
+	    }
+
+	    (0, _createClass3.default)(ContactFromApp, [{
+	        key: 'changeFieldHandler',
+	        value: function changeFieldHandler(e) {
+	            this.props.changeFieldValue({ text: e.target.value, type: e.target.name });
+	        }
+	    }, {
+	        key: 'handlerSubmit',
+	        value: function handlerSubmit(e) {
+	            if (this.props.nameField.valid && this.props.nameField.text && this.props.emailField.valid && this.props.emailField.text && this.props.messageField.valid && this.props.messageField.text) {
+	                alert('Success, data sent to the server!');
+	            } else {
+	                alert('Fail, data not valid or field is empty!');
+	                e.preventDefault();
+	            }
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'form',
+	                { className: 'contact-form', onChange: this.changeFieldHandler, onSubmit: this.handlerSubmit },
+	                _react2.default.createElement(
+	                    'span',
+	                    { className: 'error', style: { display: this.props.nameField.valid ? 'none' : '' } },
+	                    'Invalid characters at name field'
+	                ),
+	                _react2.default.createElement('input', { type: 'text', name: 'name', value: this.props.nameField.text, placeholder: 'Name' }),
+	                _react2.default.createElement(
+	                    'span',
+	                    { className: 'error', style: { display: this.props.emailField.valid ? 'none' : '' } },
+	                    'Invalid characters at email field'
+	                ),
+	                _react2.default.createElement('input', { type: 'text', name: 'email', value: this.props.emailField.text, placeholder: 'Email' }),
+	                _react2.default.createElement(
+	                    'span',
+	                    { className: 'error', style: { display: this.props.messageField.valid ? 'none' : '' } },
+	                    'Too short message (at least 20 characters)'
+	                ),
+	                _react2.default.createElement('textarea', { className: 'message', name: 'message', value: this.props.messageField.text, placeholder: 'Message' }),
+	                _react2.default.createElement(
+	                    'button',
+	                    { type: 'submit', className: 'btn contact-form-btn' },
+	                    'Send request'
+	                )
+	            );
+	        }
+	    }]);
+	    return ContactFromApp;
+	}(_react2.default.Component);
+
+	function mapStateToProps(state) {
+	    return {
+	        nameField: state.contactForm.nameField,
+	        emailField: state.contactForm.emailField,
+	        messageField: state.contactForm.messageField
+	    };
+	}
+
+	function matchDispatchToProps(dispatch) {
+	    return (0, _redux.bindActionCreators)({
+	        changeFieldValue: actions.changeFieldValue
+	    }, dispatch);
+	}
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, matchDispatchToProps)(ContactFromApp);
+
+/***/ },
+/* 333 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	var changeFieldValue = exports.changeFieldValue = function changeFieldValue(newFieldVal) {
+	    return {
+	        type: 'FIELD_CHANGE',
+	        payload: newFieldVal
+	    };
+	};
+
+/***/ },
+/* 334 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _extends2 = __webpack_require__(1);
+
+	var _extends3 = _interopRequireDefault(_extends2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var stateInitial = {
+	    nameField: { text: '', valid: true },
+	    emailField: { text: '', valid: true },
+	    messageField: { text: '', valid: true }
+	};
+
+	// english letters and spaces (additionally added)
+	var nameRegExp = /^[a-zA-Z\s]*$/;
+	// english letters, digits, symbols '@', '_' and '.' (additionally added)
+	var emailRegExp = /^[a-zA-Z0-9@_\.]*$/;
+	// at least 20 symbols
+	var messageRegExp = /^.{20,}$/;
+
+	var portfolioReducer = function portfolioReducer() {
+	    var state = arguments.length <= 0 || arguments[0] === undefined ? stateInitial : arguments[0];
+	    var action = arguments[1];
+
+
+	    switch (action.type) {
+	        case 'FIELD_CHANGE':
+	            {
+
+	                var type = action.payload.type;
+	                var text = action.payload.text;
+	                var valid = void 0;
+	                switch (type) {
+	                    case 'name':
+	                        {
+	                            valid = nameRegExp.test(text) || text === '';
+	                            return (0, _extends3.default)({}, state, { nameField: (0, _extends3.default)({ text: text, valid: valid }) });
+	                        }
+	                    case 'email':
+	                        {
+	                            valid = emailRegExp.test(text) || text === '';
+	                            return (0, _extends3.default)({}, state, { emailField: (0, _extends3.default)({ text: text, valid: valid }) });
+	                        }
+	                    case 'message':
+	                        {
+	                            valid = messageRegExp.test(text) || text === '';
+	                            return (0, _extends3.default)({}, state, { messageField: (0, _extends3.default)({ text: text, valid: valid }) });
+	                        }
+	                }
+
+	                break;
+	            }
+	        default:
+	            {
+	                return state;
+	            }
+	    }
+	};
+
+	exports.default = portfolioReducer;
 
 /***/ }
 /******/ ]);
