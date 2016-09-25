@@ -9,15 +9,17 @@ import { Link as ScrollLink } from 'react-scroll';
 import SliderApp from './containers/sliderApp.jsx';
 import NavHead from './components/navHeader.jsx';
 import TeamFactsApp from './containers/teamFactsApp.jsx';
+import AboutApp from './containers/aboutApp.jsx';
 
 //------------------------------------------------------
 import sliderReducer from './reducers/sliderReducer';
 import teamFactsReducer from './reducers/teamFactsReducer';
-
+import aboutReducer from './reducers/aboutReducer';
 
 const reducers = combineReducers({
     slider: sliderReducer,
-    teamFacts: teamFactsReducer
+    teamFacts: teamFactsReducer,
+    about: aboutReducer
 });
 
 const middleware = applyMiddleware(thunk);
@@ -39,6 +41,13 @@ ReactDOM.render(
     document.getElementById('team-facts')
 );
 
+ReactDOM.render(
+    <Provider store={store}>
+        <AboutApp />
+    </Provider>,
+    document.getElementById('about-app')
+);
+
 
 
 
@@ -55,6 +64,6 @@ let scrollOptions = {
 
 ReactDOM.render(<NavHead activeClass="nav-active" {...scrollOptions}/>, document.getElementById('nav-main'));
 ReactDOM.render(
-    <ScrollLink className="footer-btn" to="home" {...scrollOptions}><i className="fa fa-angle-up"></i></ScrollLink>,
+    <ScrollLink className="footer-btn" to="home" {...scrollOptions}><i className="fa fa-angle-up" /></ScrollLink>,
     document.getElementById("btn-footer-top")
 );

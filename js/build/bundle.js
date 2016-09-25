@@ -80,6 +80,10 @@
 
 	var _teamFactsApp2 = _interopRequireDefault(_teamFactsApp);
 
+	var _aboutApp = __webpack_require__(323);
+
+	var _aboutApp2 = _interopRequireDefault(_aboutApp);
+
 	var _sliderReducer = __webpack_require__(310);
 
 	var _sliderReducer2 = _interopRequireDefault(_sliderReducer);
@@ -88,13 +92,20 @@
 
 	var _teamFactsReducer2 = _interopRequireDefault(_teamFactsReducer);
 
+	var _aboutReducer = __webpack_require__(325);
+
+	var _aboutReducer2 = _interopRequireDefault(_aboutReducer);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	//------------------------------------------------------
 	var reducers = (0, _redux.combineReducers)({
 	    slider: _sliderReducer2.default,
-	    teamFacts: _teamFactsReducer2.default
+	    teamFacts: _teamFactsReducer2.default,
+	    about: _aboutReducer2.default
 	});
+
+	//------------------------------------------------------
+
 
 	//------------------------------------------------------
 
@@ -115,6 +126,12 @@
 	    { store: store },
 	    _react2.default.createElement(_teamFactsApp2.default, null)
 	), document.getElementById('team-facts'));
+
+	_reactDom2.default.render(_react2.default.createElement(
+	    _reactRedux.Provider,
+	    { store: store },
+	    _react2.default.createElement(_aboutApp2.default, null)
+	), document.getElementById('about-app'));
 
 	//------------------------------------------------------
 	// Add scroll links (header navigation and buttons)
@@ -26801,6 +26818,521 @@
 	        dispatch({ type: 'FINISHED' });
 	    };
 	};
+
+/***/ },
+/* 315 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _getPrototypeOf = __webpack_require__(252);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(257);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(258);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(262);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(297);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(39);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var data = [{ text: 'User interface', width: '75%', backgroundColor: '#9c5da5' }, { text: 'Web design', width: '85%', backgroundColor: '#11b0de' }, { text: 'Wordpress', width: '70%', backgroundColor: '#d67f7f' }, { text: 'HTML & CSS', width: '90%', backgroundColor: '#20bc9d' }, { text: 'App design', width: '85%', backgroundColor: '#bb8a36' }];
+
+	var SkillsBlock = function (_React$Component) {
+	    (0, _inherits3.default)(SkillsBlock, _React$Component);
+
+	    function SkillsBlock(props) {
+	        (0, _classCallCheck3.default)(this, SkillsBlock);
+	        return (0, _possibleConstructorReturn3.default)(this, (SkillsBlock.__proto__ || (0, _getPrototypeOf2.default)(SkillsBlock)).call(this, props));
+	    }
+
+	    (0, _createClass3.default)(SkillsBlock, [{
+	        key: 'render',
+	        value: function render() {
+	            var _this2 = this;
+
+	            var items = data.map(function (item, index) {
+	                return _react2.default.createElement(
+	                    'div',
+	                    { key: index, className: 'skills-diagram-container' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'skills-diagram', style: {
+	                                width: _this2.props.show ? item.width : 0,
+	                                backgroundColor: item.backgroundColor } },
+	                        item.text
+	                    )
+	                );
+	            });
+
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'about-content' },
+	                items
+	            );
+	        }
+	    }]);
+	    return SkillsBlock;
+	}(_react2.default.Component);
+
+	exports.default = SkillsBlock;
+
+/***/ },
+/* 316 */,
+/* 317 */,
+/* 318 */,
+/* 319 */,
+/* 320 */,
+/* 321 */,
+/* 322 */,
+/* 323 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _getPrototypeOf = __webpack_require__(252);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(257);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(258);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(262);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(297);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(39);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _redux = __webpack_require__(217);
+
+	var _reactRedux = __webpack_require__(210);
+
+	var _skillsBlock = __webpack_require__(315);
+
+	var _skillsBlock2 = _interopRequireDefault(_skillsBlock);
+
+	var _biographyBlock = __webpack_require__(324);
+
+	var _biographyBlock2 = _interopRequireDefault(_biographyBlock);
+
+	var _historyBlock = __webpack_require__(327);
+
+	var _historyBlock2 = _interopRequireDefault(_historyBlock);
+
+	var _aboutActions = __webpack_require__(326);
+
+	var actions = _interopRequireWildcard(_aboutActions);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var AboutApp = function (_React$Component) {
+	    (0, _inherits3.default)(AboutApp, _React$Component);
+
+	    function AboutApp(props) {
+	        (0, _classCallCheck3.default)(this, AboutApp);
+
+	        var _this = (0, _possibleConstructorReturn3.default)(this, (AboutApp.__proto__ || (0, _getPrototypeOf2.default)(AboutApp)).call(this, props));
+
+	        _this.scrollHandler = _this.scrollHandler.bind(_this);
+	        return _this;
+	    }
+
+	    (0, _createClass3.default)(AboutApp, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            document.addEventListener('scroll', this.scrollHandler);
+	        }
+	    }, {
+	        key: 'componentWillUnmount',
+	        value: function componentWillUnmount() {
+	            document.removeEventListener('scroll', this.scrollHandler);
+	        }
+	    }, {
+	        key: 'scrollHandler',
+	        value: function scrollHandler(e) {
+	            var top = document.querySelector('#about-block').getBoundingClientRect().top;
+	            var bottom = document.querySelector('#about-block').getBoundingClientRect().bottom;
+	            var headerOffset = 100;
+
+	            if (top <= document.documentElement.clientHeight && bottom >= headerOffset) {
+	                document.removeEventListener('scroll', this.scrollHandler);
+	                this.props.showSkillsEnable();
+	            }
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var _this2 = this;
+
+	            var viewBlock = _react2.default.createElement(_skillsBlock2.default, null);
+
+	            switch (this.props.currView) {
+	                case 0:
+	                    viewBlock = _react2.default.createElement(_historyBlock2.default, null);
+	                    break;
+	                case 1:
+	                    viewBlock = _react2.default.createElement(_biographyBlock2.default, null);
+	                    break;
+	                case 2:
+	                    viewBlock = _react2.default.createElement(_skillsBlock2.default, { show: this.props.skillsShow });
+	                    break;
+	            }
+
+	            var links = ['Out history', 'Our biography', 'Our skills'].map(function (item, index) {
+	                var classes = 'about-nav-item ' + (_this2.props.currView === index ? 'active' : '');
+
+	                return _react2.default.createElement(
+	                    'li',
+	                    { key: index,
+	                        className: classes,
+	                        onClick: function onClick() {
+	                            return _this2.props.showView(index);
+	                        } },
+	                    item
+	                );
+	            });
+
+	            return _react2.default.createElement(
+	                'div',
+	                { id: 'about-block' },
+	                _react2.default.createElement(
+	                    'ul',
+	                    { className: 'about-nav' },
+	                    links
+	                ),
+	                viewBlock
+	            );
+	        }
+	    }]);
+	    return AboutApp;
+	}(_react2.default.Component);
+
+	function mapStateToProps(state) {
+	    return {
+	        currView: state.about.currView,
+	        skillsShow: state.about.skillsShow
+	    };
+	}
+
+	function matchDispatchToProps(dispatch) {
+	    return (0, _redux.bindActionCreators)({
+	        showView: actions.showView,
+	        showSkillsEnable: actions.showSkillsEnable
+	    }, dispatch);
+	}
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, matchDispatchToProps)(AboutApp);
+
+/***/ },
+/* 324 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _getPrototypeOf = __webpack_require__(252);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(257);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(258);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(262);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(297);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(39);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var BiographyBlock = function (_React$Component) {
+	    (0, _inherits3.default)(BiographyBlock, _React$Component);
+
+	    function BiographyBlock(props) {
+	        (0, _classCallCheck3.default)(this, BiographyBlock);
+	        return (0, _possibleConstructorReturn3.default)(this, (BiographyBlock.__proto__ || (0, _getPrototypeOf2.default)(BiographyBlock)).call(this, props));
+	    }
+
+	    (0, _createClass3.default)(BiographyBlock, [{
+	        key: "render",
+	        value: function render() {
+	            return _react2.default.createElement(
+	                "div",
+	                { className: "about-content" },
+	                _react2.default.createElement(
+	                    "p",
+	                    null,
+	                    "Lorem ipsum dolor sit amet, adipisci repudiare sed et, aperiri feugiat id vel, ridens animal aliquando vis ut. Te est tollit disputationi, at mei habeo summo. Percipit oportere reprehendunt per ut, no solum ludus meliore vix. Cu eos explicari repudiare. Harum verear quaeque et pri, ei rebum maiorum intellegam usu. Inani possit neglegentur id vel."
+	                ),
+	                _react2.default.createElement(
+	                    "p",
+	                    null,
+	                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis mauris interdum, blandit nulla at, bibendum velit. Donec tristique, tortor cursus posuere aliquam"
+	                )
+	            );
+	        }
+	    }]);
+	    return BiographyBlock;
+	}(_react2.default.Component);
+
+	exports.default = BiographyBlock;
+
+/***/ },
+/* 325 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _extends2 = __webpack_require__(1);
+
+	var _extends3 = _interopRequireDefault(_extends2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var stateInitial = {
+	    currView: 2,
+	    skillsShow: false
+	};
+
+	var aboutReducer = function aboutReducer() {
+	    var state = arguments.length <= 0 || arguments[0] === undefined ? stateInitial : arguments[0];
+	    var action = arguments[1];
+
+
+	    switch (action.type) {
+	        case 'CHANGE_VIEW':
+	            {
+	                return (0, _extends3.default)({}, state, { currView: action.payload });
+	                break;
+	            }
+	        case 'SHOW_SKILLS':
+	            {
+	                return (0, _extends3.default)({}, state, { skillsShow: true });
+	                break;
+	            }
+	        default:
+	            {
+	                return state;
+	            }
+	    }
+	};
+
+	exports.default = aboutReducer;
+
+/***/ },
+/* 326 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	var showView = exports.showView = function showView(number) {
+	    return {
+	        type: 'CHANGE_VIEW',
+	        payload: number
+	    };
+	};
+
+	var showSkillsEnable = exports.showSkillsEnable = function showSkillsEnable() {
+	    return {
+	        type: 'SHOW_SKILLS'
+	    };
+	};
+
+/***/ },
+/* 327 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _getPrototypeOf = __webpack_require__(252);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(257);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(258);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(262);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(297);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(39);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var HistoryBlock = function (_React$Component) {
+	    (0, _inherits3.default)(HistoryBlock, _React$Component);
+
+	    function HistoryBlock(props) {
+	        (0, _classCallCheck3.default)(this, HistoryBlock);
+	        return (0, _possibleConstructorReturn3.default)(this, (HistoryBlock.__proto__ || (0, _getPrototypeOf2.default)(HistoryBlock)).call(this, props));
+	    }
+
+	    (0, _createClass3.default)(HistoryBlock, [{
+	        key: "render",
+	        value: function render() {
+	            return _react2.default.createElement(
+	                "div",
+	                { className: "about-content" },
+	                _react2.default.createElement(
+	                    "p",
+	                    null,
+	                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis mauris interdum, blandit nulla at, bibendum velit. Donec tristique, tortor cursus posuere aliquam"
+	                ),
+	                _react2.default.createElement(
+	                    "ul",
+	                    { className: "about-content-list" },
+	                    _react2.default.createElement(
+	                        "li",
+	                        { className: "about-content-list-item" },
+	                        _react2.default.createElement(
+	                            "span",
+	                            { className: "about-content-done-text" },
+	                            "Vestibulum quis mauris"
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        "li",
+	                        { className: "about-content-list-item" },
+	                        _react2.default.createElement(
+	                            "span",
+	                            { className: "about-content-done-text" },
+	                            "Vestibulum quis mauris"
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        "li",
+	                        { className: "about-content-list-item" },
+	                        _react2.default.createElement(
+	                            "span",
+	                            { className: "about-content-done-text" },
+	                            "Vestibulum quis mauris"
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        "li",
+	                        { className: "about-content-list-item" },
+	                        _react2.default.createElement(
+	                            "span",
+	                            { className: "about-content-done-text" },
+	                            "Vestibulum quis mauris"
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        "li",
+	                        { className: "about-content-list-item" },
+	                        _react2.default.createElement(
+	                            "span",
+	                            { className: "about-content-done-text" },
+	                            "Vestibulum quis mauris"
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        "li",
+	                        { className: "about-content-list-item" },
+	                        _react2.default.createElement(
+	                            "span",
+	                            { className: "about-content-done-text" },
+	                            "Vestibulum quis mauris"
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        "li",
+	                        { className: "about-content-list-item" },
+	                        _react2.default.createElement(
+	                            "span",
+	                            { className: "about-content-done-text" },
+	                            "Vestibulum quis mauris"
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        "li",
+	                        { className: "about-content-list-item" },
+	                        _react2.default.createElement(
+	                            "span",
+	                            { className: "about-content-done-text" },
+	                            "Vestibulum quis mauris"
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	    return HistoryBlock;
+	}(_react2.default.Component);
+
+	exports.default = HistoryBlock;
 
 /***/ }
 /******/ ]);
