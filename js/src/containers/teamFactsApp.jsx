@@ -33,6 +33,9 @@ class TeamFactsApp extends React.Component {
     }
 
     scrollHandler(e) {
+        if (!document.querySelector('.team-facts')) {
+            return;
+        }
         let top = document.querySelector('.team-facts').getBoundingClientRect().top;
         let bottom = document.querySelector('.team-facts').getBoundingClientRect().bottom;
         let headerOffset = 100;

@@ -20,6 +20,11 @@ class SliderApp extends React.Component {
         this.props.switchAuto();
     }
 
+    componentWillUnMount() {
+        // This action will clear timers
+        this.props.switchToSlide();
+    }
+
     switchNextSlide() {
         if (this.props.hiddenChange)
             return;
@@ -47,6 +52,8 @@ class SliderApp extends React.Component {
             transform: `translate3d(${-sliderOffset}px, 0px, 0px)`,
             transitionDuration: `${this.props.transitionDuration}ms`
         };
+
+
 
         return (
             <div className="slider-container">

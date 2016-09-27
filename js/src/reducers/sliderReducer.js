@@ -11,6 +11,8 @@ let stateInitial = {
 
 const sliderReducer = (state = stateInitial, action) => {
 
+    let width = document.documentElement.clientWidth;
+
     switch (action.type) {
         case 'CHANGE_SLIDE': {
             let hiddenChange = false;
@@ -28,7 +30,7 @@ const sliderReducer = (state = stateInitial, action) => {
                 hiddenChange = true;
             }
 
-            return {...state, ...{hiddenChange}, currSlide: nextSlide, transitionDuration: transitionTime};
+            return {...state, ...{hiddenChange}, currSlide: nextSlide, transitionDuration: transitionTime, sliderWidth: width};
             break;
         }
         case 'CHANGE_SLIDE_HIDDEN': {
@@ -36,7 +38,7 @@ const sliderReducer = (state = stateInitial, action) => {
             if (state.currSlide == 0) {
                 nextSlide = slidesCount;
             }
-            return {...state, hiddenChange: false, currSlide: nextSlide, transitionDuration: 0};
+            return {...state, hiddenChange: false, currSlide: nextSlide, transitionDuration: 0, sliderWidth: width};
             break;
         }
         default: {

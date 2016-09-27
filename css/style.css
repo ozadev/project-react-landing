@@ -26,6 +26,8 @@
 
 body {
 	font-family: 'Montserrat', sans-serif;
+	/* костиль */
+	min-height: calc(100vh + 1px);
 }
 
 *, *:before, *:after {
@@ -95,9 +97,9 @@ header {
 }
 
 .nav-main > ul > li {
-	line-height: 1.2;
+	line-height: 1;
 	list-style-type: none;
-	height: 14.28%;
+	height: 12.5%;
 }
 
 .nav-main > ul > li > a {
@@ -118,7 +120,7 @@ header {
 	color: #18cfab;
 }
 
-@media all and (min-width: 687px) {
+@media all and (min-width: 768px) {
 
 	.nav-main > ul > li {
 		float: left;
@@ -482,12 +484,19 @@ h1 {
 .service-nav-item {
 	height: 100%;
 	list-style: none;
-	padding: 20px 0;
 	font-size: 16px;
-	color: #717171;
 	background-color: #f8f8fb;
 	border: 1px solid #ebebeb;
-	cursor: pointer;
+}
+
+.service-nav-item a {
+	display: block;
+	color: #717171;
+}
+
+.service-nav-item span {
+	display: inline-block;
+	padding: 20px 0;
 }
 
 .service-nav-item.active, .service-nav-item:hover {

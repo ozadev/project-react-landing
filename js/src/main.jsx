@@ -3,16 +3,24 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { default as thunk } from 'redux-thunk';
-import { Link as ScrollLink } from 'react-scroll';
+import { Router, Route, IndexRoute, hashHistory } from 'react-router';
+
 
 //------------------------------------------------------
-import SliderApp from './containers/sliderApp.jsx';
-import NavHead from './components/navHeader.jsx';
-import TeamFactsApp from './containers/teamFactsApp.jsx';
-import AboutApp from './containers/aboutApp.jsx';
-import PortfolioApp from './containers/portfolioApp.jsx';
-import ContactFormApp from './containers/contactFormApp.jsx';
-import FeedbackApp from './containers/feedbackApp.jsx';
+import Header from './main/Header.jsx';
+import HomeSection from './main/HomeSection.jsx';
+import ServiceSection from './main/ServiceSection.jsx';
+import AboutSection from './main/AboutSection.jsx';
+import WorkSection from './main/WorkSection.jsx';
+import TeamSection from './main/TeamSection.jsx';
+import NewsSection from './main/NewsSection.jsx';
+import FeedbackSection from './main/FeedbackSection.jsx';
+import ContactSection from './main/ContactSection.jsx';
+import Footer from './main/Footer.jsx';
+
+import NewsView from './main/NewsView.jsx';
+
+import { ServiceWeb, ServiceGraphic, ServiceSupport, ServiceApp, ServiceMarketing, ServiceSeo } from './components/serviceSection/ServiceItems.jsx';
 
 //------------------------------------------------------
 import sliderReducer from './reducers/sliderReducer';
@@ -21,6 +29,7 @@ import aboutReducer from './reducers/aboutReducer';
 import portfolioReducer from './reducers/portfolioReducer';
 import contactFormReducer from './reducers/contactFormReducer';
 import feedbackReducer from './reducers/feedbackReducer';
+import newsReducer from './reducers/newsReducer';
 
 const reducers = combineReducers({
     slider: sliderReducer,
@@ -28,7 +37,8 @@ const reducers = combineReducers({
     about: aboutReducer,
     portfolio: portfolioReducer,
     contactForm: contactFormReducer,
-    feedback: feedbackReducer
+    feedback: feedbackReducer,
+    news: newsReducer
 });
 
 const middleware = applyMiddleware(thunk);
@@ -36,72 +46,59 @@ const store = createStore(reducers, middleware);
 
 //------------------------------------------------------
 
-ReactDOM.render(
-    <Provider store={store}>
-        <SliderApp />
-    </Provider>,
-    document.getElementById('slider-home')
-);
+class App extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        return (
+            <div>
+                <Header />
+                {this.props.children}
+                <Footer />
+            </div>
+        )
+    }
+}
+
+class Home extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        return (
+            <div>
+                <HomeSection />
+                <ServiceSection>
+                    {this.props.children}
+                </ServiceSection>
+                <AboutSection />
+                <WorkSection />
+                <TeamSection />
+                <NewsSection />
+                <FeedbackSection />
+                <ContactSection />
+            </div>
+        )
+    }
+}
 
 ReactDOM.render(
     <Provider store={store}>
-        <TeamFactsApp/>
+        <Router history={hashHistory}>
+            <Route component={App}>
+                <Route path="/" component={Home} >
+                    <IndexRoute component={ServiceWeb} />
+                    <Route path="/service/web" component={ServiceWeb} />
+                    <Route path="/service/graphic" component={ServiceGraphic} />
+                    <Route path="/service/support" component={ServiceSupport} />
+                    <Route path="/service/app" component={ServiceApp} />
+                    <Route path="/service/marketing" component={ServiceMarketing} />
+                    <Route path="/service/seo" component={ServiceSeo} />
+                </Route>
+                <Route path="/:id" component={NewsView} />
+            </Route>
+        </Router>
     </Provider>,
-    document.getElementById('team-facts')
-);
-
-ReactDOM.render(
-    <Provider store={store}>
-        <AboutApp />
-    </Provider>,
-    document.getElementById('about-app')
-);
-
-ReactDOM.render(
-    <Provider store={store}>
-        <PortfolioApp />
-    </Provider>,
-    document.getElementById('portfolio')
-);
-
-ReactDOM.render(
-    <Provider store={store}>
-        <ContactFormApp />
-    </Provider>,
-    document.getElementById('contact-form')
-);
-
-ReactDOM.render(
-    <Provider store={store}>
-        <FeedbackApp />
-    </Provider>,
-    document.getElementById('feedback-app')
-);
-
-
-
-
-//------------------------------------------------------
-// Add scroll links (header navigation and buttons)
-
-let scrollOptions = {
-    duration: 1000,
-    offset: -100,
-    smooth: true,
-    spy: true
-};
-
-ReactDOM.render(<NavHead activeClass="nav-active" {...scrollOptions}/>, document.getElementById('nav-main'));
-ReactDOM.render(
-    <ScrollLink className="footer-btn" to="home" {...scrollOptions}><i className="fa fa-angle-up" /></ScrollLink>,
-    document.getElementById("btn-footer-top")
-);
-
-ReactDOM.render(
-    <ScrollLink style={{cursor: 'pointer'}} to="home" {...scrollOptions}>
-        <span className="logo-img" />
-        <span className="logo-text logo-text-part1">the</span>
-        <span className="logo-text logo-text-part2">Ham</span>
-    </ScrollLink>,
-    document.querySelector(".logo-container")
+    document.getElementById('main-app')
 );
