@@ -2,7 +2,7 @@
 It's one-week project of Ignite ReactJS courses block. All dynamic of landing page (theHam psd template) realized at ReactJS + Redux. Bootstrap 3 grid system used to make page responsive.
 
 * Link to result: https://ozadev.github.io/project-react-landing
-* Link to psd template: https://github.com/ozadev/project-react-landing/tree/gh-pages/task/template.psd
+* Link to psd template: https://github.com/ozadev/project-react-landing/tree/master/task/template.psd
 * Link to course material: https://github.com/ozadev/ignite/tree/master/ReactJS
 
 ## Задача 
